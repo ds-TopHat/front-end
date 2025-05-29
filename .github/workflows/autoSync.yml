@@ -17,7 +17,7 @@ jobs:
 
       - name: Add remote-url
         run: |
-          git remote add forked-repo https://hansoojeongsj:${{ secrets.AUTO_ACTIONS }}@github.com/hansoojeongsj/ds-TopHat/front-end
+          git remote add forked-repo https://hansoojeongsj:${{ secrets.AUTO_ACTIONS }}@github.com/hansoojeongsj/ds-TopHat
           git config user.name hansoojeongsj
           git config user.email ${{ secrets.EMAIL }}
       - name: Push Changes to forked-repo
