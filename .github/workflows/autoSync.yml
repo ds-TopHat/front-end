@@ -1,0 +1,28 @@
+name: Auto Sync
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  sync:
+    name: Sync forked repo
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout main
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.AUTO_ACTIONS }}
+
+      - name: Add remote-url
+        run: |
+          git remote add forked-repo https://hansoojeongsj:${{ secrets.AUTO_ACTIONS }}@github.com/hansoojeongsj/ds-TopHat
+          git config user.name hansoojeongsj
+          git config user.email ${{ secrets.EMAIL }}
+      - name: Push Changes to forked-repo
+        run: |
+          git push -f forked-repo main
+      - name: Clean up
+        run: |
+          git remote remove forked-repo
