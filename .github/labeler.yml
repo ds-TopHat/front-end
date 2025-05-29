@@ -1,0 +1,27 @@
+enable:
+  issues: true
+  prs: true
+
+labels:
+  '🎸 Chore':
+    - '^\[Chore\]'
+  '🔗 CI/CD':
+    - '^\[Ci\]'
+  '🎨 Design':
+    - '^\[Design\]'
+  '📃 Docs':
+    - '^\[Docs\]'
+  '⭐ Feature':
+    - '^\[Feat\]'
+  '🔧 Fix':
+    - '^\[Fix\]'
+  '🪄 Refactor':
+    - '^\[Refactor\]'
+  '⚙️ Setting':
+    - '^\[Setting\]'
+  '🌈 Deploy':
+    - '^\[Deploy\]'
+  '🧩 Test':
+    - '^\[Test\]'
+  '⚠️ HOTFIX':
+    - '^\[HOTFIX\]'
