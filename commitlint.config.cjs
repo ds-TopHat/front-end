@@ -21,7 +21,7 @@ module.exports = {
       ],
     ],
     'subject-case': [0],
-    
+
     'header-max-length': [2, 'always', 100],
 
     'header-issue-suffix': [2, 'always'],
@@ -34,7 +34,8 @@ module.exports = {
           const { header } = parsed;
 
           const issuePattern = /\(#\d+\)$/;
-          const typePattern = /^(feat|setting|fix|chore|style|docs|refactor|test|design|build|deploy)/;
+          const typePattern =
+            /^(feat|setting|fix|chore|style|docs|refactor|test|design|build|deploy)/;
 
           if (!typePattern.test(header)) {
             return [
