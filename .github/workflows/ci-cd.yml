@@ -11,7 +11,7 @@ on:
 
 permissions:
   contents: read
-  pull-requests: write
+  issues: write
 
 jobs:
   build:
@@ -39,14 +39,13 @@ jobs:
       - name: Build the project
         id: build
         run: pnpm build
-        continue-on-error: true
 
       - name: Lint the project
         id: lint
         run: pnpm lint
 
-      - name: Add comment to PR if build succeeds
-        if: github.event_name == 'pull_request'
+      - name: Comment on PR for build success
+        if: ${{ github.event_name == 'pull_request' && success() }}
         uses: actions/github-script@v6
         with:
           script: |
@@ -55,5 +54,18 @@ jobs:
               issue_number: prNumber,
               owner: context.repo.owner,
               repo: context.repo.repo,
-              body: `📖 빌드에 성공했습니다`
+              body: `🎩 빌드에 성공했습니다!`
+            });
+
+      - name: Comment on PR for build failure
+        if: ${{ github.event_name == 'pull_request' && failure() }}
+        uses: actions/github-script@v6
+        with:
+          script: |
+            const prNumber = context.payload.pull_request.number;
+            await github.rest.issues.createComment({
+              issue_number: prNumber,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: `✖️ 빌드에 실패했습니다.`
             });
