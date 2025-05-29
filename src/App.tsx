@@ -4,6 +4,8 @@ import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import pageRoutes from '@routes/pageRoutes';
 
 import { queryClient } from '@/queryClient';
+import '@styles/index.css';
+
 
 const router = createBrowserRouter(pageRoutes);
 
@@ -11,7 +13,7 @@ const App = () => {
   return (
     <QueryClientProvider client={queryClient}>
       <RouterProvider router={router} />
-      {import.meta.env.DEV && <ReactQueryDevtools initialIsOpen={false} />}
+      <ReactQueryDevtools initialIsOpen={false} />
     </QueryClientProvider>
   );
 };
