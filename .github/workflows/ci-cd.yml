@@ -1,0 +1,71 @@
+name: CI/CD Pipeline
+
+on:
+  pull_request:
+    branches:
+      - develop
+
+  push:
+    branches:
+      - develop
+
+permissions:
+  contents: read
+  pull-requests: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: latest
+          run_install: false
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'pnpm'
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Build the project
+        id: build
+        run: pnpm build
+
+      - name: Lint the project
+        id: lint
+        run: pnpm lint
+
+      - name: Comment on PR for build success
+        if: ${{ github.event_name == 'pull_request' && success() }}
+        uses: actions/github-script@v6
+        with:
+          script: |
+            const prNumber = context.payload.pull_request.number;
+            await github.rest.issues.createComment({
+              issue_number: prNumber,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: `🎩 빌드에 성공했습니다!`
+            });
+
+      - name: Comment on PR for build failure
+        if: ${{ github.event_name == 'pull_request' && failure() }}
+        uses: actions/github-script@v6
+        with:
+          script: |
+            const prNumber = context.payload.pull_request.number;
+            await github.rest.issues.createComment({
+              issue_number: prNumber,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: `✖️ 빌드에 실패했습니다.`
+            });
