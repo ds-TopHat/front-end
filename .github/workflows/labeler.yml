@@ -16,12 +16,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Apply labels based on title prefix
-        uses: jimschubert/labeler-action@v1
+        uses: jimschubert/labeler-action@v2
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Assign PR/Issue to yourself
-        if: github.event_name == 'pull_request' || github.event_name == 'issues'
         uses: actions/github-script@v7
         with:
           script: |
