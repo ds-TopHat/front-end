@@ -15,7 +15,7 @@ const App = () => {
       <ThemeProvider>
         <div className={rootStyle}>
           <RouterProvider router={router} />
-          <ReactQueryDevtools initialIsOpen={false} />
+          {import.meta.env.DEV && <ReactQueryDevtools initialIsOpen={false} />}
         </div>
       </ThemeProvider>
     </QueryClientProvider>
