@@ -1,0 +1,15 @@
+export { default as IcMainAdd } from './IcMainAdd';
+export { default as IcMainChat1 } from './IcMainChat1';
+export { default as IcMainChat2 } from './IcMainChat2';
+export { default as IcMainChat3 } from './IcMainChat3';
+export { default as IcMainDivide } from './IcMainDivide';
+export { default as IcMainFloating } from './IcMainFloating';
+export { default as IcMainGroup } from './IcMainGroup';
+export { default as IcMainLine } from './IcMainLine';
+export { default as IcMainMinus } from './IcMainMinus';
+export { default as IcMainMulti } from './IcMainMulti';
+export { default as IcMainPaperLeft } from './IcMainPaperLeft';
+export { default as IcMainPaperRight } from './IcMainPaperRight';
+export { default as IcMainPencil } from './IcMainPencil';
+export { default as IcMainRect } from './IcMainRect';
+export { default as IcMypage } from './IcMypage';
