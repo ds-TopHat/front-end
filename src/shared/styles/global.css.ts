@@ -1,40 +1,76 @@
-import { globalStyle, style } from '@vanilla-extract/css';
+import { globalStyle } from '@vanilla-extract/css';
 
-import { themeVars } from './theme.css';
+import { themeVars } from "./theme.css";
 
+// :root 변수 정의
 globalStyle(':root', {
   vars: {
     '--min-width': '375px',
     '--max-width': '768px',
-    '--height': '100dvh',
   },
 });
 
-globalStyle('html, body', {
-  margin: 0,
-  padding: 0,
-  width: '100vw',
-  minWidth: 'var(--min-width)',
-  maxWidth: '100vw',
-  overflowX: 'hidden',
-  fontSize: '62.5%',
-  fontFamily: `'Pretendard Variable', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif`,
-  scrollbarWidth: 'none',
-  scrollBehavior: 'smooth',
+// storybook의 경우는 모바일 view 적용 안되도록 처리
+globalStyle(':root:has(#storybook-root)', {
+  vars: {
+    '--min-width': 'auto',
+    '--max-width': 'auto',
+  },
 });
 
+globalStyle(':root', {
+  vars: {
+    '--swiper-theme-color': themeVars.color.white000,
+    '--swiper-pagination-bullet-inactive-color': themeVars.color.white000,
+  },
+});
+
+// HTML, Body 스타일
+globalStyle('html, body', {
+  minWidth: 'var(--min-width)',
+  display: 'flex',
+  fontFamily: `'Pretendard', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif`,
+  justifyContent: 'center',
+  alignItems: 'center',
+  fontSize: '62.5%',
+  scrollbarWidth: 'none',
+  margin: '0 auto',
+  scrollBehavior: 'smooth',
+  backgroundColor: themeVars.color.gray200,
+});
+
+// A 태그 스타일
+globalStyle('a', {
+  textDecoration: 'none',
+  color: 'inherit',
+});
+
+// Select 태그 스타일
+globalStyle('select', {
+  background: themeVars.color.white000,
+});
+
+// #root 스타일
+globalStyle('#root', {
+  position: 'relative',
+  width: '100%',
+  minHeight: '100dvh',
+  backgroundColor: '#fff',
+});
+
+// Webkit 스크롤바 숨기기
 globalStyle('::-webkit-scrollbar', {
   display: 'none',
 });
 
-export const rootStyle = style({
-  display: 'flex',
-  flexDirection: 'column',
-  margin: '0 auto',
-  minHeight: '100dvh',
-  minWidth: 'var(--min-width)',
-  maxWidth: 'var(--max-width)',
-  width: '100vw',
+globalStyle('.swiper-pagination-bullet', {
+  width: '4px',
+  height: '4px',
   backgroundColor: themeVars.color.white000,
-  boxShadow: `0px 0px 30px 0px ${themeVars.color.gray300}`,
+});
+
+globalStyle('.swiper-pagination-bullet:active', {
+  width: '4px',
+  height: '4px',
+  backgroundColor: themeVars.color.white000,
 });
