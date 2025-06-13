@@ -13,3 +13,4 @@ export { default as IcMainPaperRight } from './IcMainPaperRight';
 export { default as IcMainPencil } from './IcMainPencil';
 export { default as IcMainRect } from './IcMainRect';
 export { default as IcMypage } from './IcMypage';
+export { default as IcToggleCamera } from './IcToggleCamera';

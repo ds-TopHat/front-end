@@ -1,20 +1,12 @@
 import { globalStyle } from '@vanilla-extract/css';
 
-import { themeVars } from "./theme.css";
+import { themeVars } from './theme.css';
 
 // :root 변수 정의
 globalStyle(':root', {
   vars: {
     '--min-width': '375px',
     '--max-width': '768px',
-  },
-});
-
-// storybook의 경우는 모바일 view 적용 안되도록 처리
-globalStyle(':root:has(#storybook-root)', {
-  vars: {
-    '--min-width': 'auto',
-    '--max-width': 'auto',
   },
 });
 
@@ -37,6 +29,7 @@ globalStyle('html, body', {
   margin: '0 auto',
   scrollBehavior: 'smooth',
   backgroundColor: themeVars.color.gray200,
+  boxShadow: '0 0 10px rgba(0, 0, 0, 0.1)',
 });
 
 // A 태그 스타일

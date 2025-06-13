@@ -1,51 +1,48 @@
+import { themeVars } from '@styles/theme.css';
 import { style } from '@vanilla-extract/css';
 
 export const sectionBottomWrapper = style({
+  position: 'relative',
   height: '108.8rem',
   background: 'linear-gradient(168deg, #D7ECFF 0%, #AFDAFF 86.66%)',
-  display: 'flex',
-  justifyContent: 'center',
-  alignItems: 'center',
+  overflow: 'hidden',
 });
 
-export const paperLeft = style({
+export const iconLeft = style({
   position: 'absolute',
-  left: 0,
-  top: '2575px',
-  transform: 'translateY(-50%)',
+  left: '0.5rem',
+  bottom: '41%',
+  width: 'clamp(20rem, 5vw, 90rem)',
+  height: 'auto',
 });
 
-export const paperRight = style({
+export const iconRight = style({
   position: 'absolute',
-  right: 0,
-  top: '2575px',
-  transform: 'translateY(-50%)',
-});
-
-export const buttonWrapper = style({
-  position: 'relative',
-  zIndex: 2,
+  right: '0.5rem',
+  bottom: '41%',
+  width: 'clamp(20rem, 5vw, 90rem)',
+  height: 'auto',
 });
 
 export const blueBackground = style({
   position: 'absolute',
-  top: '-1rem',
-  left: '-2rem',
-  right: '-2rem',
-  bottom: '-1rem',
-  backgroundColor: 'rgba(0, 123, 255, 0.1)', // 연한 파란 투명 배경
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
+  padding: '0.9rem',
+  backgroundColor: 'rgba(33, 80, 236, 0.1)',
   borderRadius: '1rem',
-  zIndex: 1,
+  zIndex: 2,
 });
 
 export const mainButton = style({
-  position: 'relative',
-  padding: '1rem 2rem',
-  backgroundColor: '#007bff',
-  color: '#fff',
+  padding: '1.2rem 2.4rem',
+  background: themeVars.color.main_gradient,
+  color: themeVars.color.white000,
   border: 'none',
-  borderRadius: '0.75rem',
-  fontSize: '1rem',
+  borderRadius: '1rem',
+  whiteSpace: 'nowrap',
   cursor: 'pointer',
-  zIndex: 2,
+  zIndex: 3,
+  ...themeVars.font.displayLarge,
 });

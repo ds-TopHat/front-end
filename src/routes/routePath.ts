@@ -1,4 +1,5 @@
 export default {
-  HOME: "/",
-  SOLVE: "/solve",
+  HOME: '/',
+  SOLVE: '/solve',
+  MY: '/my',
 };

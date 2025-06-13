@@ -6,7 +6,7 @@ const SvgIcMainRect = (props: SVGProps<SVGSVGElement>) => (
     viewBox="0 0 100 36"
     {...props}
   >
-    <path fill="#74A3FF" d="M0 0h100v36H0z" />
+    <path fill="currentColor" d="M0 0h100v36H0z" />
   </svg>
 );
 export default SvgIcMainRect;
