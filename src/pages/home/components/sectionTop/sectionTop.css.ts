@@ -2,7 +2,7 @@ import { style } from '@vanilla-extract/css';
 import { themeVars } from '@styles/theme.css';
 
 export const sectionTopWrapper = style({
-  height: '204rem',
+  height: '222rem',
   background: themeVars.color.main_gradient,
   position: 'relative',
   display: 'flex',

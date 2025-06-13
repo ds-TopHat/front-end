@@ -5,22 +5,22 @@ import * as styles from './scrollText.css';
 const ScrollText = () => {
   const { scrollY } = useScroll();
 
-const opacityLine2 = useTransform(scrollY, [0, 900], [0.3, 1]);
+  const opacityLine2 = useTransform(scrollY, [0, 900], [0.3, 1]);
 
-const opacityLine3 = useTransform(scrollY, [0, 0], [0.3, 0.3]);
+  const opacityLine3 = useTransform(scrollY, [0, 0], [0.3, 0.3]);
 
-const gradientOpacity = useTransform(scrollY, [1800, 2000], [0, 1]);
-const inverseGradientOpacity = useTransform(gradientOpacity, (v) => 1 - v);
+  const gradientOpacity = useTransform(scrollY, [1900, 2100], [0, 1]);
+  const inverseGradientOpacity = useTransform(gradientOpacity, (v) => 1 - v);
 
-const combinedOpacityLine2 = useTransform(
-  [opacityLine2, inverseGradientOpacity] as MotionValue<number>[],
-  ([o1, o2]) => (o1 as number) * (o2 as number)
-);
+  const combinedOpacityLine2 = useTransform(
+    [opacityLine2, inverseGradientOpacity] as MotionValue<number>[],
+    ([o1, o2]) => (o1 as number) * (o2 as number),
+  );
 
-const combinedOpacityLine3 = useTransform(
-  [opacityLine3, inverseGradientOpacity] as MotionValue<number>[],
-  ([o1, o2]) => (o1 as number) * (o2 as number)
-);
+  const combinedOpacityLine3 = useTransform(
+    [opacityLine3, inverseGradientOpacity] as MotionValue<number>[],
+    ([o1, o2]) => (o1 as number) * (o2 as number),
+  );
 
   const renderLine = (text: string, baseOpacity: MotionValue<number>) => (
     <div style={{ position: 'relative' }}>

@@ -109,7 +109,7 @@ const SectionTop = () => {
           opacity: groupOpacity,
           y: groupTranslateY,
           position: 'fixed',
-          top: '44rem',
+          top: '40rem',
           width: '100%',
           pointerEvents: 'none',
         }}
