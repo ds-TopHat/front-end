@@ -10,25 +10,25 @@ import * as styles from '@pages/home/components/sectionTop/sectionTop.css';
 const START_SCROLL = 640;
 const GAP = 200;
 const EXIT_OFFSET = 400;
+const END_SCROLL = START_SCROLL + GAP * 3 + EXIT_OFFSET;
 
 const SectionTop = () => {
   const { scrollY } = useScroll();
-  const END_SCROLL = START_SCROLL + GAP + EXIT_OFFSET + 50;
-  const groupExitStart = START_SCROLL;
-  const groupExitEnd = groupExitStart + 30;
 
+  // Group 초기 등장 ~ 사라짐
   const groupOpacity = useTransform(
     scrollY,
-    [groupExitStart, groupExitEnd],
-    [1, 0],
-  );
-  const groupTranslateY = useTransform(
-    scrollY,
-    [groupExitStart, groupExitEnd],
-    [0, -30],
+    [0, START_SCROLL, START_SCROLL + 30],
+    [1, 1, 0],
   );
 
-  // 각 아이콘의 진입 효과
+  const groupTranslateY = useTransform(
+    scrollY,
+    [0, START_SCROLL, START_SCROLL + 30],
+    [0, 0, -30],
+  );
+
+  // Chat 아이콘 1
   const opacity1 = useTransform(
     scrollY,
     [START_SCROLL, START_SCROLL + GAP],
@@ -40,6 +40,7 @@ const SectionTop = () => {
     [20, 0],
   );
 
+  // Chat 아이콘 2
   const opacity2 = useTransform(
     scrollY,
     [START_SCROLL + GAP, START_SCROLL + GAP * 2],
@@ -51,6 +52,7 @@ const SectionTop = () => {
     [20, 0],
   );
 
+  // Chat 아이콘 3
   const opacity3 = useTransform(
     scrollY,
     [START_SCROLL + GAP * 2, START_SCROLL + GAP * 3],
@@ -62,7 +64,7 @@ const SectionTop = () => {
     [20, 0],
   );
 
-  // 사라지는 효과
+  // 공통 Fade-out
   const finalOpacity = useTransform(
     scrollY,
     [END_SCROLL, END_SCROLL + 200],
@@ -74,25 +76,37 @@ const SectionTop = () => {
     [0, -30],
   );
 
-  // ✅ 각 효과 조합 (Hook 직접 호출로)
+  // Group
+  const combinedGroupOpacity = useTransform(
+    [groupOpacity, finalOpacity],
+    ([a, b]) =>(a as number) * (b as number),
+  );
+  const combinedGroupTranslateY = useTransform(
+    [groupTranslateY, finalTranslateY],
+    ([a, b]) => (a as number) + (b as number),
+  );
+
+  // Chat 1
   const combinedOpacity1 = useTransform(
     [opacity1, finalOpacity],
-    ([a, b]) => (a as number) * (b as number),
+    ([a, b]) =>(a as number) * (b as number),
   );
   const combinedTranslateY1 = useTransform(
     [translateY1, finalTranslateY],
     ([a, b]) => (a as number) + (b as number),
   );
 
+  // Chat 2
   const combinedOpacity2 = useTransform(
     [opacity2, finalOpacity],
-    ([a, b]) => (a as number) * (b as number),
+    ([a, b]) =>(a as number) * (b as number),
   );
   const combinedTranslateY2 = useTransform(
     [translateY2, finalTranslateY],
-    ([a, b]) => (a as number) + (b as number),
+    ([a, b]) =>(a as number) + (b as number),
   );
 
+  // Chat 3
   const combinedOpacity3 = useTransform(
     [opacity3, finalOpacity],
     ([a, b]) => (a as number) * (b as number),
@@ -106,10 +120,10 @@ const SectionTop = () => {
     <div className={styles.sectionTopWrapper}>
       <motion.div
         style={{
-          opacity: groupOpacity,
-          y: groupTranslateY,
+          opacity: combinedGroupOpacity,
+          y: combinedGroupTranslateY,
           position: 'fixed',
-          top: '40rem',
+          top: '20rem',
           width: '100%',
           pointerEvents: 'none',
         }}
@@ -127,10 +141,11 @@ const SectionTop = () => {
         </div>
       </motion.div>
 
+      {/* Chat 1 */}
       <motion.div
         style={{
           opacity: combinedOpacity1,
-          translateY: combinedTranslateY1,
+          y: combinedTranslateY1,
           position: 'fixed',
           top: '330px',
           paddingLeft: '3rem',
@@ -140,10 +155,11 @@ const SectionTop = () => {
         <IcMainChat1 width={168} height={68} />
       </motion.div>
 
+      {/* Chat 2 */}
       <motion.div
         style={{
           opacity: combinedOpacity2,
-          translateY: combinedTranslateY2,
+          y: combinedTranslateY2,
           position: 'fixed',
           top: `calc(330px + 1.8rem + 68px)`,
           paddingLeft: '3rem',
@@ -153,10 +169,11 @@ const SectionTop = () => {
         <IcMainChat2 width={168} height={164} />
       </motion.div>
 
+      {/* Chat 3 */}
       <motion.div
         style={{
           opacity: combinedOpacity3,
-          translateY: combinedTranslateY3,
+          y: combinedTranslateY3,
           position: 'fixed',
           top: `calc(330px + 3.6rem + 232px)`,
           paddingLeft: '3rem',

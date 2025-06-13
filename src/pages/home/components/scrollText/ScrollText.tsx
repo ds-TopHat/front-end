@@ -5,7 +5,7 @@ import * as styles from './scrollText.css';
 const ScrollText = () => {
   const { scrollY } = useScroll();
 
-  const opacityLine2 = useTransform(scrollY, [0, 900], [0.3, 1]);
+  const opacityLine2 = useTransform(scrollY, [0, 1100], [0.3, 1]);
 
   const opacityLine3 = useTransform(scrollY, [0, 0], [0.3, 0.3]);
 

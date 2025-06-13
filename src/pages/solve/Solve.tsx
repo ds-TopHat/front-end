@@ -73,7 +73,14 @@ const Solve = () => {
             {chat.imageUrl && (
               <img src={chat.imageUrl} alt="" className={styles.chatImage} />
             )}
-            {chat.text && <div className={styles.chatText}>{chat.text}</div>}
+            {chat.text && <div 
+                          className={
+              chat.from === 'me'
+                ? styles.chatText
+                : styles.chatServerText
+            }
+
+            >{chat.text}</div>}
           </div>
         ))}
         <div ref={bottomRef} />
