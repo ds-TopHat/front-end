@@ -6,6 +6,7 @@ import { IcFloatingSolve } from '@components/icons';
 import routePath from '@routes/routePath';
 import { useNavigate } from 'react-router-dom';
 import * as styles from '@pages/home/home.css';
+
 const Home = () => {
   const navigate = useNavigate();
 
