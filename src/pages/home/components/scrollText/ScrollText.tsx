@@ -1,6 +1,5 @@
 import { motion, useScroll, useTransform, MotionValue } from 'framer-motion';
-
-import * as styles from './scrollText.css';
+import * as styles from '@pages/home/components/scrollText/scrollText.css';
 
 const ScrollText = () => {
   const { scrollY } = useScroll();
@@ -23,28 +22,18 @@ const ScrollText = () => {
   );
 
   const renderLine = (text: string, baseOpacity: MotionValue<number>) => (
-    <div style={{ position: 'relative' }}>
-      <motion.p
-        className={styles.line}
-        style={{ opacity: baseOpacity, position: 'relative' }}
-      >
+    <div className={styles.lineWrapper}>
+      <motion.p className={styles.line} style={{ opacity: baseOpacity }}>
         {text}
       </motion.p>
       <motion.p
-        className={`${styles.line} ${styles.gradient}`}
-        style={{
-          opacity: gradientOpacity,
-          position: 'absolute',
-          top: 0,
-          left: 0,
-          width: '100%',
-        }}
+        className={`${styles.line} ${styles.gradient} ${styles.gradientOverlay}`}
+        style={{ opacity: gradientOpacity }}
       >
         {text}
       </motion.p>
     </div>
   );
-
   return (
     <div className={styles.wrapper}>
       {renderLine('수학문제풀이를', inverseGradientOpacity)}

@@ -6,6 +6,7 @@ const colors = {
   gray400: '#CCD2D8',
   gray500: '#B5BBC1',
   gray600: '#3B3D40',
+  gray700: '#333333',
   point: '#488BFF',
   black000: '#191D1F',
   main_gradient: 'linear-gradient(270deg, #2150EC 0%, #488BFF 100%)',

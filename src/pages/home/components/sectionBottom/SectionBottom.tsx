@@ -1,7 +1,6 @@
 import { IcMainPaperLeft, IcMainPaperRight } from '@components/icons';
 import { useNavigate } from 'react-router-dom';
-
-import * as styles from './sectionBottom.css';
+import * as styles from '@pages/home/components/sectionBottom/sectionBottom.css';
 
 import routePath from '@/routes/routePath';
 
@@ -14,11 +13,11 @@ const SectionBottom = () => {
 
   return (
     <div className={styles.sectionBottomWrapper}>
-      {/* 왼쪽 아이콘 */}
-      <IcMainPaperLeft className={styles.iconLeft} />
-
-      {/* 오른쪽 아이콘 */}
-      <IcMainPaperRight className={styles.iconRight} />
+      {/* 아이콘 */}
+      <div className={styles.iconContainer}>
+        <IcMainPaperLeft className={styles.iconFull} />
+        <IcMainPaperRight className={styles.iconFull} />
+      </div>
 
       {/* 버튼 */}
       <div className={styles.blueBackground}>

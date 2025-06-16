@@ -1,48 +1,57 @@
 import { themeVars } from '@styles/theme.css';
 import { style } from '@vanilla-extract/css';
 
-export const sectionBottomWrapper = style({
+const sectionBottomWrapper = style({
   position: 'relative',
+  width: '100%',
   height: '108.8rem',
   background: 'linear-gradient(168deg, #D7ECFF 0%, #AFDAFF 86.66%)',
   overflow: 'hidden',
 });
 
-export const iconLeft = style({
+const iconContainer = style({
+  display: 'flex',
   position: 'absolute',
-  left: '0.5rem',
-  bottom: '41%',
-  width: 'clamp(20rem, 5vw, 90rem)',
+  justifyContent: 'space-between',
+
+  inset: 0,
+  pointerEvents: 'none',
+});
+
+const iconFull = style({
+  width: '50%',
   height: 'auto',
 });
 
-export const iconRight = style({
+const blueBackground = style({
   position: 'absolute',
-  right: '0.5rem',
-  bottom: '41%',
-  width: 'clamp(20rem, 5vw, 90rem)',
-  height: 'auto',
-});
-
-export const blueBackground = style({
-  position: 'absolute',
+  display: 'flex',
+  justifyContent: 'center',
   top: '50%',
   left: '50%',
   transform: 'translate(-50%, -50%)',
   padding: '0.9rem',
+
   backgroundColor: 'rgba(33, 80, 236, 0.1)',
-  borderRadius: '1rem',
-  zIndex: 2,
+  borderRadius: '12px',
+  zIndex: themeVars.zIndex.one,
 });
 
-export const mainButton = style({
+const mainButton = style({
   padding: '1.2rem 2.4rem',
-  background: themeVars.color.main_gradient,
-  color: themeVars.color.white000,
-  border: 'none',
-  borderRadius: '1rem',
+  borderRadius: '10px',
   whiteSpace: 'nowrap',
   cursor: 'pointer',
-  zIndex: 3,
+  background: themeVars.color.main_gradient,
+  color: themeVars.color.white000,
+  zIndex: themeVars.zIndex.two,
   ...themeVars.font.displayLarge,
 });
+
+export {
+  sectionBottomWrapper,
+  iconContainer,
+  iconFull,
+  blueBackground,
+  mainButton,
+};

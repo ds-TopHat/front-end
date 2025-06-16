@@ -1,7 +1,6 @@
 import { useState, useRef } from 'react';
-
-import Toggle from './components/toggle/Toggle';
-import * as styles from './solve.css';
+import Toggle from '@pages/solve/components/toggle/Toggle';
+import * as styles from '@pages/solve/solve.css';
 
 type Chat = {
   from: 'me' | 'server';
@@ -73,14 +72,15 @@ const Solve = () => {
             {chat.imageUrl && (
               <img src={chat.imageUrl} alt="" className={styles.chatImage} />
             )}
-            {chat.text && <div 
-                          className={
-              chat.from === 'me'
-                ? styles.chatText
-                : styles.chatServerText
-            }
-
-            >{chat.text}</div>}
+            {chat.text && (
+              <div
+                className={
+                  chat.from === 'me' ? styles.chatText : styles.chatServerText
+                }
+              >
+                {chat.text}
+              </div>
+            )}
           </div>
         ))}
         <div ref={bottomRef} />

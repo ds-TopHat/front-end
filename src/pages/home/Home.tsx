@@ -1,8 +1,7 @@
 import Footer from '@components/footer/Footer';
-
-import SectionBottom from './components/sectionBottom/SectionBottom';
-import SectionTop from './components/sectionTop/SectionTop';
-import ScrollText from "./components/scrollText/ScrollText";
+import SectionBottom from '@pages/home/components/sectionBottom/SectionBottom';
+import SectionTop from '@pages/home/components/sectionTop/SectionTop';
+import ScrollText from '@pages/home/components/scrollText/ScrollText';
 
 const Home = () => {
   return (

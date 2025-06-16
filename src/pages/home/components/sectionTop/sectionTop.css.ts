@@ -1,7 +1,7 @@
 import { style } from '@vanilla-extract/css';
 import { themeVars } from '@styles/theme.css';
 
-export const sectionTopWrapper = style({
+const sectionTopWrapper = style({
   height: '222rem',
   background: themeVars.color.main_gradient,
   position: 'relative',
@@ -12,8 +12,10 @@ export const sectionTopWrapper = style({
   width: '100%',
 });
 
-export const iconPosition = style({
+const iconPosition = style({
   position: 'absolute',
   top: '20rem',
   right: '3rem',
 });
+
+export { sectionTopWrapper, iconPosition };
