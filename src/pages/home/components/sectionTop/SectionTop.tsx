@@ -8,7 +8,7 @@ import {
 import * as styles from '@pages/home/components/sectionTop/sectionTop.css';
 
 const START_SCROLL = 640;
-const GAP = 200;
+const GAP = 150;
 const EXIT_OFFSET = 400;
 const END_SCROLL = START_SCROLL + GAP * 3 + EXIT_OFFSET;
 
@@ -18,68 +18,69 @@ const SectionTop = () => {
   // Group 초기 등장 ~ 사라짐
   const groupOpacity = useTransform(
     scrollY,
-    [0, START_SCROLL, START_SCROLL + 30],
-    [1, 1, 0],
+    [START_SCROLL, START_SCROLL + 100],
+    [1, 0],
   );
 
   const groupTranslateY = useTransform(
     scrollY,
-    [0, START_SCROLL, START_SCROLL + 30],
-    [0, 0, -30],
+    [START_SCROLL, START_SCROLL + 100],
+    [0, -100], 
   );
 
-  // Chat 아이콘 1
+  // Chat 1
   const opacity1 = useTransform(
     scrollY,
-    [START_SCROLL, START_SCROLL + GAP],
+    [START_SCROLL + 50, START_SCROLL + GAP + 50],
     [0, 1],
   );
   const translateY1 = useTransform(
     scrollY,
-    [START_SCROLL, START_SCROLL + GAP],
-    [20, 0],
+    [START_SCROLL + 50, START_SCROLL + GAP + 50],
+    [40, 0],
   );
 
-  // Chat 아이콘 2
+  // Chat 2
   const opacity2 = useTransform(
     scrollY,
-    [START_SCROLL + GAP, START_SCROLL + GAP * 2],
+    [START_SCROLL + GAP + 50, START_SCROLL + GAP * 2 + 50],
     [0, 1],
   );
   const translateY2 = useTransform(
     scrollY,
-    [START_SCROLL + GAP, START_SCROLL + GAP * 2],
-    [20, 0],
+    [START_SCROLL + GAP + 50, START_SCROLL + GAP * 2 + 50],
+    [40, 0],
   );
 
-  // Chat 아이콘 3
+  // Chat 3
   const opacity3 = useTransform(
     scrollY,
-    [START_SCROLL + GAP * 2, START_SCROLL + GAP * 3],
+    [START_SCROLL + GAP * 2 + 50, START_SCROLL + GAP * 3 + 50],
     [0, 1],
   );
   const translateY3 = useTransform(
     scrollY,
-    [START_SCROLL + GAP * 2, START_SCROLL + GAP * 3],
-    [20, 0],
+    [START_SCROLL + GAP * 2 + 50, START_SCROLL + GAP * 3 + 50],
+    [40, 0],
   );
 
   // 공통 Fade-out
   const finalOpacity = useTransform(
     scrollY,
-    [END_SCROLL, END_SCROLL + 200],
+    [END_SCROLL, END_SCROLL + 300],
     [1, 0],
   );
+
   const finalTranslateY = useTransform(
     scrollY,
-    [END_SCROLL, END_SCROLL + 200],
-    [0, -30],
+    [END_SCROLL, END_SCROLL + 300],
+    [0, -50],
   );
 
   // Group
   const combinedGroupOpacity = useTransform(
     [groupOpacity, finalOpacity],
-    ([a, b]) =>(a as number) * (b as number),
+    ([a, b]) => (a as number) * (b as number),
   );
   const combinedGroupTranslateY = useTransform(
     [groupTranslateY, finalTranslateY],
@@ -89,7 +90,7 @@ const SectionTop = () => {
   // Chat 1
   const combinedOpacity1 = useTransform(
     [opacity1, finalOpacity],
-    ([a, b]) =>(a as number) * (b as number),
+    ([a, b]) => (a as number) * (b as number),
   );
   const combinedTranslateY1 = useTransform(
     [translateY1, finalTranslateY],
@@ -99,11 +100,11 @@ const SectionTop = () => {
   // Chat 2
   const combinedOpacity2 = useTransform(
     [opacity2, finalOpacity],
-    ([a, b]) =>(a as number) * (b as number),
+    ([a, b]) => (a as number) * (b as number),
   );
   const combinedTranslateY2 = useTransform(
     [translateY2, finalTranslateY],
-    ([a, b]) =>(a as number) + (b as number),
+    ([a, b]) => (a as number) + (b as number),
   );
 
   // Chat 3
@@ -123,7 +124,7 @@ const SectionTop = () => {
           opacity: combinedGroupOpacity,
           y: combinedGroupTranslateY,
           position: 'fixed',
-          top: '20rem',
+          top: '24rem',
           width: '100%',
           pointerEvents: 'none',
         }}
@@ -147,7 +148,7 @@ const SectionTop = () => {
           opacity: combinedOpacity1,
           y: combinedTranslateY1,
           position: 'fixed',
-          top: '330px',
+          top: '35rem',
           paddingLeft: '3rem',
           width: '100%',
         }}
@@ -161,7 +162,7 @@ const SectionTop = () => {
           opacity: combinedOpacity2,
           y: combinedTranslateY2,
           position: 'fixed',
-          top: `calc(330px + 1.8rem + 68px)`,
+          top: `calc(35rem + 1.8rem + 6rem)`,
           paddingLeft: '3rem',
           width: '100%',
         }}
@@ -175,7 +176,7 @@ const SectionTop = () => {
           opacity: combinedOpacity3,
           y: combinedTranslateY3,
           position: 'fixed',
-          top: `calc(330px + 3.6rem + 232px)`,
+          top: `calc(35rem + 3.6rem + 21.8rem)`,
           paddingLeft: '3rem',
           width: '100%',
         }}

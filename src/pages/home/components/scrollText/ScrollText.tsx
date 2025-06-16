@@ -1,15 +1,22 @@
 import { motion, useScroll, useTransform, MotionValue } from 'framer-motion';
-
-import * as styles from './scrollText.css';
+import * as styles from '@pages/home/components/scrollText/scrollText.css';
 
 const ScrollText = () => {
   const { scrollY } = useScroll();
+  const BREAKPOINT = 2600;
 
-  const opacityLine2 = useTransform(scrollY, [0, 1100], [0.3, 1]);
+  const positionY = useTransform(scrollY, (y) =>
+    y < BREAKPOINT ? 'fixed' : 'absolute',
+  );
+  const topY = useTransform(scrollY, (y) =>
+    y < BREAKPOINT ? '0' : `${BREAKPOINT}px`,
+  );
+
+  const opacityLine2 = useTransform(scrollY, [0, 1200], [0.3, 1]);
 
   const opacityLine3 = useTransform(scrollY, [0, 0], [0.3, 0.3]);
 
-  const gradientOpacity = useTransform(scrollY, [1900, 2100], [0, 1]);
+  const gradientOpacity = useTransform(scrollY, [2100, 2300], [0, 1]);
   const inverseGradientOpacity = useTransform(gradientOpacity, (v) => 1 - v);
 
   const combinedOpacityLine2 = useTransform(
@@ -23,34 +30,30 @@ const ScrollText = () => {
   );
 
   const renderLine = (text: string, baseOpacity: MotionValue<number>) => (
-    <div style={{ position: 'relative' }}>
-      <motion.p
-        className={styles.line}
-        style={{ opacity: baseOpacity, position: 'relative' }}
-      >
+    <div className={styles.lineWrapper}>
+      <motion.p className={styles.line} style={{ opacity: baseOpacity }}>
         {text}
       </motion.p>
       <motion.p
-        className={`${styles.line} ${styles.gradient}`}
-        style={{
-          opacity: gradientOpacity,
-          position: 'absolute',
-          top: 0,
-          left: 0,
-          width: '100%',
-        }}
+        className={`${styles.line} ${styles.gradient} ${styles.gradientOverlay}`}
+        style={{ opacity: gradientOpacity }}
       >
         {text}
       </motion.p>
     </div>
   );
-
   return (
-    <div className={styles.wrapper}>
+    <motion.div
+      className={styles.wrapper}
+      style={{
+        position: positionY as unknown as 'fixed' | 'absolute',
+        top: topY,
+      }}
+    >
       {renderLine('수학문제풀이를', inverseGradientOpacity)}
       {renderLine('단계별로 도와주는', combinedOpacityLine2)}
-      {renderLine('[ OOOXXX ]', combinedOpacityLine3)}
-    </div>
+      {renderLine('TOPHAT', combinedOpacityLine3)}
+    </motion.div>
   );
 };
 

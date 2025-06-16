@@ -1,7 +1,6 @@
 import { useRef } from 'react';
 import { IcToggleCamera } from '@components/icons';
-
-import * as styles from './toggle.css';
+import * as styles from '@pages/solve/components/toggle/toggle.css';
 
 interface ToggleProps {
   onImageSelect: (url: string) => void;
@@ -34,7 +33,7 @@ const Toggle = ({ onImageSelect, onTextSelect }: ToggleProps) => {
       <div className={styles.scrollContainer}>
         <div className={styles.inner}>
           <div onClick={handleCameraClick} style={{ cursor: 'pointer' }}>
-            <IcToggleCamera width={64} />
+            <IcToggleCamera width={56} />
           </div>
 
           <input
