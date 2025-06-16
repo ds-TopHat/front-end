@@ -2,18 +2,17 @@ import { useRef } from 'react';
 import { IcToggleCamera } from '@components/icons';
 import * as styles from '@pages/solve/components/toggle/toggle.css';
 
-interface ToggleProps {
-  onImageSelect: (url: string) => void;
-  onTextSelect: (text: string) => void;
-}
-
 const TOGGLE_ITEMS = [
   '전체 풀이를 알려줘',
   '다음 단계를 알려줘',
   '해결했어요!',
 ];
+interface ToggleProps {
+  onTextSelect: (text: string) => void;
+  onFileSelect: (file: File) => void;
+}
 
-const Toggle = ({ onImageSelect, onTextSelect }: ToggleProps) => {
+const Toggle = ({ onTextSelect, onFileSelect }: ToggleProps) => {
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   const handleCameraClick = () => {
@@ -23,11 +22,9 @@ const Toggle = ({ onImageSelect, onTextSelect }: ToggleProps) => {
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) {
-      const url = URL.createObjectURL(file);
-      onImageSelect(url);
+      onFileSelect(file);
     }
   };
-
   return (
     <div className={styles.wrapper}>
       <div className={styles.scrollContainer}>
