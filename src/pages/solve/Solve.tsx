@@ -1,15 +1,22 @@
 import { useState, useRef } from 'react';
 import Toggle from '@pages/solve/components/toggle/Toggle';
 import * as styles from '@pages/solve/solve.css';
+import { uploadToPresignedUrl } from '@apis/uplaod';
+
+import { getPresignedUrl } from './apis/axios';
+import { useRequestSolution } from './apis/queries';
 
 type Chat = {
   from: 'me' | 'server';
   imageUrl?: string;
   text?: string;
 };
+
 const Solve = () => {
   const [chatList, setChatList] = useState<Chat[]>([]);
   const bottomRef = useRef<HTMLDivElement>(null);
+  const [solutionSteps, setSolutionSteps] = useState<string[]>([]);
+  const [stepIndex, setStepIndex] = useState(0);
 
   const scrollToBottom = () => {
     requestAnimationFrame(() => {
@@ -24,37 +31,90 @@ const Solve = () => {
       setTimeout(() => scrollToBottom(), 0);
       return next;
     });
-
-    setTimeout(() => {
-      setChatList((prev) => {
-        const next = [
-          ...prev,
-          { from: 'server' as const, text: '이미지 잘 받았어요!' },
-        ];
-
-        setTimeout(() => scrollToBottom(), 0);
-        return next;
-      });
-    }, 1000);
   };
 
-  const handleTextSelect = (text: string) => {
-    setChatList((prev) => {
-      const next = [...prev, { from: 'me' as const, text }];
-      setTimeout(() => scrollToBottom(), 0);
-      return next;
-    });
+  const handleTextSelect = async (text: string) => {
+    if (solutionSteps.length === 0) {
+      return;
+    }
 
-    setTimeout(() => {
-      setChatList((prev) => {
-        const next = [
+    setChatList((prev) => [...prev, { from: 'me', text }]);
+    scrollToBottom();
+
+    if (text === '전체 풀이를 알려줘') {
+      // 전체 풀이 모두 출력
+      setTimeout(() => {
+        const full = solutionSteps.map((s) => ({
+          from: 'server' as const,
+          text: s,
+        }));
+        setChatList((prev) => [...prev, ...full]);
+        scrollToBottom();
+      }, 500);
+    } else if (text === '다음 단계를 알려줘') {
+      if (stepIndex < solutionSteps.length) {
+        const nextStep = solutionSteps[stepIndex];
+        setStepIndex(stepIndex + 1);
+
+        setTimeout(() => {
+          setChatList((prev) => [...prev, { from: 'server', text: nextStep }]);
+          scrollToBottom();
+        }, 500);
+      } else {
+        setTimeout(() => {
+          setChatList((prev) => [
+            ...prev,
+            { from: 'server', text: '모든 단계를 완료했어요!' },
+          ]);
+          scrollToBottom();
+        }, 500);
+      }
+    } else if (text === '해결했어요!') {
+      setTimeout(() => {
+        setChatList((prev) => [
           ...prev,
-          { from: 'server' as const, text: `서버 응답: ${text}` },
-        ];
-        setTimeout(() => scrollToBottom(), 0);
-        return next;
-      });
-    }, 1000);
+          {
+            from: 'server',
+            text: '🎉 문제 해결을 축하합니다!',
+          },
+        ]);
+
+        scrollToBottom();
+
+        setTimeout(() => {
+          // 초기화 또는 페이지 이동
+          setChatList([]);
+          setStepIndex(0);
+          setSolutionSteps([]);
+          // 메인 페이지 이동 추가 가능
+        }, 2000);
+      }, 500);
+    }
+  };
+  const { mutateAsync: requestSolutionMutate } = useRequestSolution();
+
+  const handleFileSelect = async (file: File) => {
+    try {
+      const { uploadUrl, downloadUrl } = await getPresignedUrl();
+      await uploadToPresignedUrl(uploadUrl, file);
+      handleImageSelect(downloadUrl);
+
+      const solutionData = await requestSolutionMutate(downloadUrl);
+      const steps = solutionData
+        .filter((item: Record<string, string>) =>
+          Object.keys(item)[0].startsWith('step'),
+        )
+        .map((item: Record<string, string>) => Object.values(item)[0]);
+
+      setSolutionSteps(steps);
+    } catch {
+      setChatList((prev) => [
+        ...prev,
+        { from: 'server', text: '오류가 발생했습니다.' },
+      ]);
+      scrollToBottom();
+      return;
+    }
   };
 
   return (
@@ -85,10 +145,7 @@ const Solve = () => {
         ))}
         <div ref={bottomRef} />
       </div>
-      <Toggle
-        onImageSelect={handleImageSelect}
-        onTextSelect={handleTextSelect}
-      />
+      <Toggle onTextSelect={handleTextSelect} onFileSelect={handleFileSelect} />
     </div>
   );
 };
