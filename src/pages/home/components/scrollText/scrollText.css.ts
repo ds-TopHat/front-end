@@ -15,10 +15,10 @@ const gradientOverlay = style({
 const wrapper = style({
   display: 'flex',
   flexDirection: 'column',
-  position: 'fixed',
-
   gap: '0.8rem',
+
   paddingTop: '19.2rem',
+  margin: '0 auto',
   paddingLeft: '3.2rem',
 
   zIndex: themeVars.zIndex.three,

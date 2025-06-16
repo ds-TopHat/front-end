@@ -2,14 +2,14 @@ import { style } from '@vanilla-extract/css';
 import { themeVars } from '@styles/theme.css';
 
 const sectionTopWrapper = style({
-  height: '222rem',
-  background: themeVars.color.main_gradient,
   position: 'relative',
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
-  maxWidth: '768px',
+
   width: '100%',
+  height: '249.8rem',
+  background: themeVars.color.main_gradient,
 });
 
 const iconPosition = style({
