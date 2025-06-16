@@ -19,9 +19,14 @@ const Home = () => {
       <SectionTop />
       <SectionBottom />
       <Footer />
-      <div className={styles.floatingSolveBtn} onClick={handleClickFloating}>
+      <button
+        type="button"
+        className={styles.floatingSolveBtn}
+        onClick={handleClickFloating}
+        aria-label="문제 해결 페이지 이동"
+      >
         <IcFloatingSolve width={60} />
-      </div>
+      </button>
     </>
   );
 };

@@ -51,7 +51,8 @@ const toggleButton = style({
 
   borderRadius: '100px',
   backgroundColor: themeVars.color.white000,
-  border: `4px solid ${themeVars.color.main_gradient}`,
+  border: '4px solid transparent',
+  borderImage: `${themeVars.color.main_gradient} 0`,
   boxShadow: '0px 0px 10px 0px rgba(33, 81, 236, 0.30)',
   whiteSpace: 'nowrap',
   ...themeVars.font.bodyMedium,
