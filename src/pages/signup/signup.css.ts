@@ -1,3 +1,4 @@
+import { themeVars } from '@styles/theme.css';
 import { style } from '@vanilla-extract/css';
 
 export const formWrapper = style({
@@ -12,12 +13,37 @@ export const container = style({
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'center',
-  marginTop: '12rem',
+  marginTop: '8rem',
 });
 
 export const topBox = style({
   width: '12rem',
   height: '12rem',
   backgroundColor: '#98B6FF',
-  marginBottom: '5.8rem',
+  marginBottom: '5rem',
+});
+
+export const buttonWrapper = style({
+  display: 'flex',
+  position: 'fixed',
+  flexDirection: 'column',
+  width: '100%',
+  padding: '0 3.6rem 5rem',
+  gap: '1.2rem',
+  alignItems: 'center',
+  bottom: '0',
+});
+
+export const loginText = style({
+  display: 'flex',
+  color: themeVars.color.gray500,
+  ...themeVars.font.bodySmall,
+});
+
+export const loginButton = style({
+  paddingLeft: '1.2rem',
+  color: themeVars.color.point,
+  backgroundColor: 'transparent',
+  border: 'none',
+  cursor: 'pointer',
 });

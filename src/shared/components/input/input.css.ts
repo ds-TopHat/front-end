@@ -59,7 +59,7 @@ export const inputVariants = styleVariants({
 
 export const errorMessage = style({
   margin: '0 0 0 0.4rem',
-  minHeight: '4.8rem',
+  minHeight: '2.4rem',
   color: '#F73E3E',
   ...themeVars.font.labelLarge,
 });

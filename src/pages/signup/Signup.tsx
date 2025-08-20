@@ -1,5 +1,8 @@
 import { useState } from 'react';
 import Input from '@components/input/Input';
+import Button from '@components/button/Button';
+import { useNavigate } from 'react-router-dom';
+import { routePath } from '@routes/routePath';
 
 import * as styles from './signup.css';
 
@@ -11,6 +14,11 @@ const Signup = () => {
   const [emailError, setEmailError] = useState('');
   const [passwordError, setPasswordError] = useState('');
   const [confirmPasswordError, setConfirmPasswordError] = useState('');
+  const navigate = useNavigate();
+
+  const goLogin = () => {
+    navigate(routePath.LOGIN);
+  };
 
   const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setEmail(e.target.value);
@@ -49,7 +57,7 @@ const Signup = () => {
     if (!password) {
       setPasswordError('비밀번호를 입력해주세요.');
     } else if (!passwordRegex.test(password)) {
-      setPasswordError('비밀번호는 숫자, 특수문자 포함 8자 이상이어야 합니다.');
+      setPasswordError('숫자·특수문자 포함 8자 이상이어야 합니다.');
     }
   };
 
@@ -92,6 +100,15 @@ const Signup = () => {
           onBlur={handleConfirmPasswordBlur}
           error={confirmPasswordError}
         />
+      </div>
+      <div className={styles.buttonWrapper}>
+        <Button>회원가입</Button>
+        <span className={styles.loginText}>
+          이미 계정이 있으신가요?
+          <button className={styles.loginButton} onClick={goLogin}>
+            로그인
+          </button>
+        </span>
       </div>
     </div>
   );
