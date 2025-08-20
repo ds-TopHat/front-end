@@ -1,8 +1,7 @@
 import { IcMainPaperLeft, IcMainPaperRight } from '@components/icons';
 import { useNavigate } from 'react-router-dom';
 import * as styles from '@pages/home/components/sectionBottom/sectionBottom.css';
-
-import routePath from '@/routes/routePath';
+import { routePath } from '@routes/routePath';
 
 const SectionBottom = () => {
   const navigate = useNavigate();

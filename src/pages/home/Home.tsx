@@ -3,7 +3,7 @@ import SectionBottom from '@pages/home/components/sectionBottom/SectionBottom';
 import SectionTop from '@pages/home/components/sectionTop/SectionTop';
 import ScrollText from '@pages/home/components/scrollText/ScrollText';
 import { IcFloatingSolve } from '@components/icons';
-import routePath from '@routes/routePath';
+import { routePath } from '@routes/routePath';
 import { useNavigate } from 'react-router-dom';
 import * as styles from '@pages/home/home.css';
 

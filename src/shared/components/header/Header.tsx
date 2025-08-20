@@ -2,8 +2,7 @@ import { useNavigate } from 'react-router-dom';
 import { themeVars } from '@styles/theme.css';
 import { IcMainRect, IcMypage } from '@components/icons';
 import * as styles from '@components/header/header.css';
-
-import routePath from '@/routes/routePath';
+import { routePath } from '@routes/routePath';
 
 const Header = () => {
   const navigate = useNavigate();
