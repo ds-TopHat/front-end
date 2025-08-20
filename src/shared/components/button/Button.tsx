@@ -3,15 +3,17 @@ import { type ButtonHTMLAttributes } from 'react';
 import * as styles from './button.css';
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
-  disabled?: boolean;
+  isActive?: boolean;
   children: React.ReactNode;
 }
 
-const Button = ({ disabled = false, children, ...props }: ButtonProps) => {
+const Button = ({ isActive = false, children, ...props }: ButtonProps) => {
   return (
     <button
-      className={`${styles.baseButton} ${disabled ? styles.disabled : styles.active}`}
-      disabled={disabled}
+      className={`${styles.baseButton} ${
+        isActive ? styles.activeButton : styles.inactiveButton
+      }`}
+      disabled={!isActive}
       {...props}
     >
       {children}

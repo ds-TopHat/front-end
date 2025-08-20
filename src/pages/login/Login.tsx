@@ -50,6 +50,14 @@ const Login = () => {
       setPasswordError('숫자·특수문자 포함 8자 이상이어야 합니다.');
     }
   };
+  const isButtonActive = !!(
+    email &&
+    password &&
+    !emailError &&
+    !passwordError &&
+    /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) &&
+    /^(?=.*[0-9])(?=.*[!@#$%^&*]).{8,}$/.test(password)
+  );
 
   return (
     <div className={styles.container}>
@@ -75,7 +83,7 @@ const Login = () => {
         />
       </div>
       <div className={styles.buttonWrapper}>
-        <Button>로그인</Button>
+        <Button isActive={isButtonActive}>로그인</Button>
         <button className={styles.kakaoLoginButton}>
           <IcKakao width={18} height={18} />
           카카오 로그인

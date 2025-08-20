@@ -18,12 +18,12 @@ export const baseButton = style({
   ...themeVars.font.headlineLarge,
 });
 
-export const active = style({
+export const activeButton = style({
   background: themeVars.color.point,
   opacity: 1,
 });
 
-export const disabled = style({
+export const inactiveButton = style({
   background: themeVars.color.point,
   opacity: 0.5,
 });

@@ -69,6 +69,18 @@ const Signup = () => {
     }
   };
 
+  const isButtonActive = !!(
+    email &&
+    password &&
+    confirmPassword &&
+    !emailError &&
+    !passwordError &&
+    !confirmPasswordError &&
+    /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) &&
+    /^(?=.*[0-9])(?=.*[!@#$%^&*]).{8,}$/.test(password) &&
+    password === confirmPassword
+  );
+
   return (
     <div className={styles.container}>
       {/* 상단 박스 */}
@@ -102,7 +114,7 @@ const Signup = () => {
         />
       </div>
       <div className={styles.buttonWrapper}>
-        <Button>회원가입</Button>
+        <Button isActive={isButtonActive}>회원가입</Button>
         <span className={styles.loginText}>
           이미 계정이 있으신가요?
           <button className={styles.loginButton} onClick={goLogin}>
