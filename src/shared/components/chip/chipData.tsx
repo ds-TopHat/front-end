@@ -1,0 +1,145 @@
+import {
+  IcChipNum,
+  IcChipAlpha,
+  IcChipLine,
+  IcChipShape,
+  IcChipBar,
+} from '@components/icons';
+
+export const CHIP_LIST = [
+  {
+    icon: <IcChipNum />,
+    label: '자연수의 성질',
+    background: 'linear-gradient(90deg, #FFE81A 0%, #C7DE00 100%)',
+  },
+  {
+    icon: <IcChipNum />,
+    label: '정수와 유리수',
+    background: 'linear-gradient(90deg, #FFD12A 0%, #FFB224 100%)',
+  },
+  {
+    icon: <IcChipNum />,
+    label: '유리수와 소수',
+    background: 'linear-gradient(90deg, #EFE00B 0%, #FFAE00 100%)',
+  },
+  {
+    icon: <IcChipNum />,
+    label: '유리수와 순환소수',
+    background: 'linear-gradient(90deg, #FFB224 0%, #FF7C24 100%)',
+  },
+  {
+    icon: <IcChipNum />,
+    label: '실수와 제곱근',
+    background: 'linear-gradient(90deg, #FF7C24 0%, #FFB27E 100%);',
+  },
+  {
+    icon: <IcChipAlpha />,
+    label: '문자와 식',
+    background: 'linear-gradient(90deg, #FF7099 0%, #FF356F 100%)',
+  },
+  {
+    icon: <IcChipAlpha />,
+    label: '식의 계산',
+    background: 'linear-gradient(90deg, #FF698A 0%, #D90016 100%)',
+  },
+  {
+    icon: <IcChipAlpha />,
+    label: '인수분해',
+    background: 'linear-gradient(90deg, #FF837B 0%, #FF132A 100%)',
+  },
+  {
+    icon: <IcChipLine />,
+    label: '일차방정식',
+    background: 'linear-gradient(90deg, #D04FFF 0%, #E18EFF 100%)',
+  },
+  {
+    icon: <IcChipLine />,
+    label: '좌표평면과 그래프',
+    background: 'linear-gradient(90deg, #D767FF 0%, #B726EB 100%)',
+  },
+  {
+    icon: <IcChipLine />,
+    label: '일차함수',
+    background: 'linear-gradient(90deg, #B726EB 0%, #A508C9 100%)',
+  },
+  {
+    icon: <IcChipLine />,
+    label: '연립방정식',
+    background: 'linear-gradient(90deg, #A508C9 0%, #EE36FF 100%)',
+  },
+  {
+    icon: <IcChipLine />,
+    label: '이차방정식',
+    background: 'linear-gradient(90deg, #EE36FF 0%, #821CFF 100%)',
+  },
+  {
+    icon: <IcChipLine />,
+    label: '이차함수',
+    background: 'linear-gradient(90deg, #821CFF 0%, #AF6EFF 100%)',
+  },
+  {
+    icon: <IcChipShape />,
+    label: '기본 도형',
+    background: 'linear-gradient(90deg, #A0FF3B 0%, #74C41E 100%)',
+  },
+  {
+    icon: <IcChipShape />,
+    label: '도형의 이동',
+    background: 'linear-gradient(90deg, #7AD11E 0%, #57D100 100%)',
+  },
+  {
+    icon: <IcChipShape />,
+    label: '도형의 성질',
+    background: 'linear-gradient(90deg, #62AF10 0%, #D1FF54 100%)',
+  },
+  {
+    icon: <IcChipShape />,
+    label: '도형의 작도와 합동',
+    background: 'linear-gradient(90deg, #B0EA64 0%, #08A200 100%)',
+  },
+  {
+    icon: <IcChipShape />,
+    label: '삼각형과 사각형',
+    background: 'linear-gradient(90deg, #16A700 0%, #3AE345 100%)',
+  },
+  {
+    icon: <IcChipShape />,
+    label: '피타고라스 정리',
+    background: 'linear-gradient(90deg, #3AE345 0%, #72DE93 100%)',
+  },
+  {
+    icon: <IcChipShape />,
+    label: '원의 방정식',
+    background: 'linear-gradient(90deg, #72DE93 0%, #0CB640 100%)',
+  },
+  {
+    icon: <IcChipBar />,
+    label: '자료의 수집과 정리',
+    background: 'linear-gradient(90deg, #98EFFF 0%, #00D9FF 100%)',
+  },
+  {
+    icon: <IcChipBar />,
+    label: '평균과 중앙값',
+    background: 'linear-gradient(90deg, #00AFCD 0%, #51D1FF 100%)',
+  },
+  {
+    icon: <IcChipBar />,
+    label: '가능성',
+    background: 'linear-gradient(90deg, #96E8FF 0%, #00B2FF 100%)',
+  },
+  {
+    icon: <IcChipBar />,
+    label: '자료의 표현과 해석',
+    background: 'linear-gradient(90deg, #00C8FF 0%, #1875F0 100%)',
+  },
+  {
+    icon: <IcChipBar />,
+    label: '확률',
+    background: 'linear-gradient(90deg, #1875F0 0%, #6FA7F0 100%)',
+  },
+  {
+    icon: <IcChipBar />,
+    label: '통계의 이해와 활용',
+    background: 'linear-gradient(90deg, #43ADF8 0%, #2C63ED 100%)',
+  },
+];

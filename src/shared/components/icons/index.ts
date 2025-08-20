@@ -1,3 +1,8 @@
+export { default as IcChipAlpha } from './IcChipAlpha';
+export { default as IcChipBar } from './IcChipBar';
+export { default as IcChipLine } from './IcChipLine';
+export { default as IcChipNum } from './IcChipNum';
+export { default as IcChipShape } from './IcChipShape';
 export { default as IcFloatingSolve } from './IcFloatingSolve';
 export { default as IcKakao } from './IcKakao';
 export { default as IcMainAdd } from './IcMainAdd';
