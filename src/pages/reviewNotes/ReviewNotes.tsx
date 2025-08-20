@@ -1,9 +1,11 @@
 import Chip from '@components/chip/Chip';
 import { CHIP_LIST } from '@components/chip/chipData';
 
+import * as styles from './reviewNotes.css';
+
 const ReviewNotes = () => {
   return (
-    <div>
+    <div className={styles.container}>
       {CHIP_LIST.map((chip, idx) => (
         <Chip
           key={idx}
