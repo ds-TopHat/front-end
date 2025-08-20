@@ -1,8 +1,7 @@
 import { IcMainPaperLeft, IcMainPaperRight } from '@components/icons';
 import { useNavigate } from 'react-router-dom';
 import * as styles from '@pages/home/components/sectionBottom/sectionBottom.css';
-
-import routePath from '@/routes/routePath';
+import { routePath } from '@routes/routePath';
 
 const SectionBottom = () => {
   const navigate = useNavigate();
@@ -21,7 +20,11 @@ const SectionBottom = () => {
 
       {/* 버튼 */}
       <div className={styles.blueBackground}>
-        <button className={styles.mainButton} onClick={handleClick}>
+        <button
+          type="button"
+          className={styles.mainButton}
+          onClick={handleClick}
+        >
           질문 하러가기
         </button>
       </div>

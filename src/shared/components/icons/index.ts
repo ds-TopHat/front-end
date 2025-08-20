@@ -1,4 +1,5 @@
 export { default as IcFloatingSolve } from './IcFloatingSolve';
+export { default as IcKakao } from './IcKakao';
 export { default as IcMainAdd } from './IcMainAdd';
 export { default as IcMainChat1 } from './IcMainChat1';
 export { default as IcMainChat2 } from './IcMainChat2';
