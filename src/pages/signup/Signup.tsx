@@ -3,6 +3,7 @@ import Input from '@components/input/Input';
 import Button from '@components/button/Button';
 import { useNavigate } from 'react-router-dom';
 import { routePath } from '@routes/routePath';
+import { emailRegex, passwordRegex } from '@utils/validators';
 
 import * as styles from './signup.css';
 
@@ -44,7 +45,6 @@ const Signup = () => {
   };
 
   const handleEmailBlur = () => {
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!email) {
       setEmailError('이메일을 입력해주세요.');
     } else if (!emailRegex.test(email)) {
@@ -53,7 +53,6 @@ const Signup = () => {
   };
 
   const handlePasswordBlur = () => {
-    const passwordRegex = /^(?=.*[0-9])(?=.*[!@#$%^&*]).{8,}$/;
     if (!password) {
       setPasswordError('비밀번호를 입력해주세요.');
     } else if (!passwordRegex.test(password)) {
@@ -76,8 +75,8 @@ const Signup = () => {
     !emailError &&
     !passwordError &&
     !confirmPasswordError &&
-    /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) &&
-    /^(?=.*[0-9])(?=.*[!@#$%^&*]).{8,}$/.test(password) &&
+    emailRegex.test(email) &&
+    passwordRegex.test(password) &&
     password === confirmPassword
   );
 

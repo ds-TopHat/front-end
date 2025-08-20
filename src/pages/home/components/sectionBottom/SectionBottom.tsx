@@ -20,7 +20,11 @@ const SectionBottom = () => {
 
       {/* 버튼 */}
       <div className={styles.blueBackground}>
-        <button className={styles.mainButton} onClick={handleClick}>
+        <button
+          type="button"
+          className={styles.mainButton}
+          onClick={handleClick}
+        >
           질문 하러가기
         </button>
       </div>

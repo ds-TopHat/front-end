@@ -4,6 +4,7 @@ import Button from '@components/button/Button';
 import { IcKakao } from '@components/icons';
 import { useNavigate } from 'react-router-dom';
 import { routePath } from '@routes/routePath';
+import { emailRegex, passwordRegex } from '@utils/validators';
 
 import * as styles from './login.css';
 
@@ -34,7 +35,6 @@ const Login = () => {
   };
 
   const handleEmailBlur = () => {
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!email) {
       setEmailError('이메일을 입력해주세요.');
     } else if (!emailRegex.test(email)) {
@@ -43,7 +43,6 @@ const Login = () => {
   };
 
   const handlePasswordBlur = () => {
-    const passwordRegex = /^(?=.*[0-9])(?=.*[!@#$%^&*]).{8,}$/;
     if (!password) {
       setPasswordError('비밀번호를 입력해주세요.');
     } else if (!passwordRegex.test(password)) {
@@ -55,8 +54,8 @@ const Login = () => {
     password &&
     !emailError &&
     !passwordError &&
-    /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) &&
-    /^(?=.*[0-9])(?=.*[!@#$%^&*]).{8,}$/.test(password)
+    emailRegex.test(email) &&
+    passwordRegex.test(password)
   );
 
   return (

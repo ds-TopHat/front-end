@@ -24,7 +24,14 @@ const Input = ({ error, value, ...props }: InputProps) => {
   return (
     <>
       <input
-        className={`${styles.baseInput} ${styles.inputVariants[variant]}`}
+        {...props}
+        className={[
+          styles.baseInput,
+          styles.inputVariants[variant],
+          props.className,
+        ]
+          .filter(Boolean)
+          .join(' ')}
         value={value}
         onFocus={(e) => {
           setFocused(true);
@@ -34,10 +41,13 @@ const Input = ({ error, value, ...props }: InputProps) => {
           setFocused(false);
           props.onBlur?.(e);
         }}
-        {...props}
+        aria-invalid={!!error}
+        aria-describedby={error ? 'input-error' : undefined}
       />
       {error ? (
-        <div className={styles.errorMessage}>{error}</div>
+        <div id="input-error" className={styles.errorMessage}>
+          {error}
+        </div>
       ) : (
         <div className={styles.errorMessage} style={{ visibility: 'hidden' }} />
       )}

@@ -12,11 +12,11 @@ const Header = () => {
 
   return (
     <div className={styles.headerWrapper}>
-      <button onClick={goHome}>
+      <button type="button" aria-label="홈페이지로 이동" onClick={goHome}>
         <IcMainRect width={100} height={36} color={themeVars.color.white000} />
       </button>
 
-      <button onClick={goMyPage}>
+      <button type="button" aria-label="마이페이지로 이동" onClick={goMyPage}>
         <IcMypage width={36} height={36} color={themeVars.color.white000} />
       </button>
     </div>
