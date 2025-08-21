@@ -2,8 +2,10 @@ import { themeVars } from '@styles/theme.css';
 import { style } from '@vanilla-extract/css';
 
 export const container = style({
-  height: '100dvh',
+  minHeight: '100%',
   background: 'linear-gradient(355deg, #FFF 48.23%, #BFD9FE 97.05%), #FFF',
+  backgroundRepeat: 'no-repeat',
+  backgroundSize: '100% 100dvh',
 });
 
 export const title = style({
@@ -90,4 +92,63 @@ export const noteContent = style({
   display: 'flex',
   flexDirection: 'column',
   gap: '1rem',
+});
+
+export const bottom = style({
+  padding: '2.4rem 3.2rem 1rem 3.6rem',
+  display: 'flex',
+  flexDirection: 'column',
+  gap: '3.2rem',
+});
+
+export const randomChipContainer = style({
+  display: 'inline-flex',
+  flexWrap: 'wrap',
+  gap: '0.4rem',
+  alignItems: 'center',
+  color: themeVars.color.gray500,
+  fontSize: '1.8rem',
+  fontWeight: 500,
+});
+
+export const firstLine = style({
+  display: 'flex',
+  alignItems: 'center',
+  gap: '0.4rem',
+});
+
+export const secondLine = style({
+  display: 'flex',
+  alignItems: 'center',
+  gap: '0.4rem',
+});
+
+export const divider = style({
+  height: '1px',
+  backgroundColor: themeVars.color.gray200,
+  width: '100%',
+});
+
+export const randomText = style({
+  color: themeVars.color.gray600,
+  fontSize: '1.6rem',
+});
+
+export const chipList = style({
+  display: 'flex',
+  flexWrap: 'wrap',
+  gap: '0.8rem',
+});
+
+export const expandButton = style({
+  display: 'flex',
+  justifyContent: 'center',
+  width: '100%',
+  cursor: 'pointer',
+  paddingBottom: '2rem',
+});
+
+export const rotated = style({
+  transform: 'rotate(180deg)',
+  transition: 'transform 0.3s',
 });

@@ -5,13 +5,13 @@ export const chip = style({
   display: 'inline-flex',
   alignItems: 'center',
   padding: '0.8rem 1rem',
-  gap: '0.8rem',
+  gap: '0.4rem',
   color: themeVars.color.white000,
   borderRadius: '20px',
-  ...themeVars.font.headlineSmall,
+  ...themeVars.font.bodySmall,
 });
 
 export const icon = style({
-  width: '2.4rem',
-  height: '2.4rem',
+  width: '2rem',
+  height: '2rem',
 });
