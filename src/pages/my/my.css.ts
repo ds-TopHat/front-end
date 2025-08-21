@@ -94,7 +94,7 @@ export const noteContent = style({
   gap: '1rem',
 });
 
-export const bottom = style({
+export const chipSection = style({
   padding: '2.4rem 3.2rem 1rem 3.6rem',
   display: 'flex',
   flexDirection: 'column',
@@ -138,6 +138,20 @@ export const chipList = style({
   display: 'flex',
   flexWrap: 'wrap',
   gap: '0.8rem',
+});
+
+export const chipListWrapper = style({
+  position: 'relative',
+});
+
+export const chipGradientOverlay = style({
+  position: 'absolute',
+  bottom: 0,
+  left: 0,
+  width: '100%',
+  height: '56px',
+  background: 'linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, #FFF 100%)',
+  pointerEvents: 'none', // 클릭 막힘 방지
 });
 
 export const expandButton = style({

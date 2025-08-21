@@ -55,7 +55,7 @@ const My = () => {
         </div>
       </div>
 
-      <div className={styles.bottom}>
+      <div className={styles.chipSection}>
         <div className={styles.randomChipContainer}>
           <div className={styles.firstLine}>
             <Chip
@@ -78,23 +78,28 @@ const My = () => {
 
         <div className={styles.divider} />
 
-        <div
-          className={styles.chipList}
-          style={{
-            maxHeight: expanded ? 'none' : '4.8rem',
-            overflow: 'hidden',
-          }}
-        >
-          {CHIP_LIST.map((chip, idx) => (
-            <Chip
-              key={idx}
-              icon={chip.icon}
-              label={chip.label}
-              background={chip.background}
-            />
-          ))}
+        <div className={styles.chipListWrapper}>
+          <div
+            className={styles.chipList}
+            style={{
+              maxHeight: expanded ? 'none' : '4.8rem',
+              overflow: 'hidden',
+            }}
+          >
+            {CHIP_LIST.map((chip, idx) => (
+              <Chip
+                key={idx}
+                icon={chip.icon}
+                label={chip.label}
+                background={chip.background}
+              />
+            ))}
+          </div>
+
+          {!expanded && <div className={styles.chipGradientOverlay} />}
         </div>
       </div>
+
       <button className={styles.expandButton} onClick={toggleExpand}>
         <IcDownArrow
           width={16}
