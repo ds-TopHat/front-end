@@ -24,6 +24,9 @@ export const useInfiniteScroll = (
     observer.observe(node);
 
     return () => {
+      if (node) {
+        observer.unobserve(node);
+      }
       observer.disconnect();
     };
   }, [node, callback, options]);

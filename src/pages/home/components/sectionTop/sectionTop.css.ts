@@ -8,7 +8,7 @@ const sectionTopWrapper = style({
 
   width: '100%',
   height: '249.8rem',
-  background: 'linear-gradient(180deg, #2150EC 0%,rgb(130, 172, 255) 100%)',
+  background: 'linear-gradient(180deg, #2150EC 0%,#82acff 100%)',
 });
 
 const iconPosition = style({

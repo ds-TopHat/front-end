@@ -5,7 +5,7 @@ const sectionBottomWrapper = style({
   position: 'relative',
   width: '100%',
   height: '108.8rem',
-  background: 'linear-gradient(180deg, rgb(130, 172, 255) 0%, #D7ECFF 85%)',
+  background: 'linear-gradient(180deg, #82acff 0%, #D7ECFF 85%)',
   overflow: 'hidden',
 });
 
