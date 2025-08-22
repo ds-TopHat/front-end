@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react';
+import { useState, useRef, useCallback } from 'react';
 import { IcExtract } from '@components/icons';
 import { useNavigate } from 'react-router-dom';
 import { routePath } from '@routes/routePath';
@@ -23,12 +23,17 @@ const ReviewNotes = () => {
 
   const [cards, setCards] = useState(dummyCards.slice(0, 10));
 
-  useInfiniteScroll(loaderRef, () => {
-    setCards((prev) => [
-      ...prev,
-      ...dummyCards.slice(prev.length, prev.length + 10),
-    ]);
-  });
+  const loadMore = useCallback(() => {
+    setCards((prev) => {
+      const nextSlice = dummyCards.slice(prev.length, prev.length + 10);
+      if (nextSlice.length === 0) {
+        return prev;
+      }
+      return [...prev, ...nextSlice];
+    });
+  }, [dummyCards]);
+
+  useInfiniteScroll(loaderRef, loadMore);
 
   return (
     <div className={styles.reviewContainer}>

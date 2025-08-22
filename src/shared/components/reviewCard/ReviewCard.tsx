@@ -7,12 +7,12 @@ interface ReviewCardProps {
   onClick?: () => void;
 }
 
-export function ReviewCard({
+const ReviewCard = ({
   imageSrc,
   text,
   selected = false,
   onClick,
-}: ReviewCardProps) {
+}: ReviewCardProps) => {
   return (
     <div
       className={`${styles.cardContainer} ${selected ? styles.cardSelected : ''}`}
@@ -25,6 +25,6 @@ export function ReviewCard({
       <div className={styles.textContainer}>{text}</div>
     </div>
   );
-}
+};
 
 export default ReviewCard;

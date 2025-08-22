@@ -13,7 +13,7 @@ export const container = style({
 export const title = style({
   display: 'flex',
   flexDirection: 'row',
-  padding: '5.2rem 0 0 3.6rem',
+  padding: '3.2rem 0 0 3.6rem',
 });
 
 export const name = style({

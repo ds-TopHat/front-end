@@ -85,7 +85,7 @@ const My = () => {
           <div
             className={styles.chipList}
             style={{
-              maxHeight: expanded ? 'none' : '6rem',
+              maxHeight: expanded ? 'none' : '8rem',
               overflow: 'hidden',
             }}
           >
