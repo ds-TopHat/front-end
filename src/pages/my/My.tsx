@@ -37,9 +37,11 @@ const My = () => {
       <div className={styles.noteDiv}>
         <div className={styles.noteCard}>
           <img
-            src="/public/img/img_note.png"
+            src="/img/img_note.png"
             className={styles.noteImg}
             alt="오답노트"
+            loading="lazy"
+            decoding="async"
           />
           <div className={styles.noteContainer}>
             <div className={styles.noteContent}>

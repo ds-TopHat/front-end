@@ -4,6 +4,7 @@ export { default as IcChipLine } from './IcChipLine';
 export { default as IcChipNum } from './IcChipNum';
 export { default as IcChipShape } from './IcChipShape';
 export { default as IcDownArrow } from './IcDownArrow';
+export { default as IcExtract } from './IcExtract';
 export { default as IcFloatingSolve } from './IcFloatingSolve';
 export { default as IcKakao } from './IcKakao';
 export { default as IcMainAdd } from './IcMainAdd';
