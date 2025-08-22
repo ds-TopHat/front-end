@@ -2,7 +2,8 @@ import { themeVars } from '@styles/theme.css';
 import { style } from '@vanilla-extract/css';
 
 export const reviewContainer = style({
-  padding: '3.2rem 3.6rem',
+  padding: '14rem 3.6rem 4.8rem',
+  background: themeVars.color.gray100,
 });
 
 export const title = style({
@@ -21,7 +22,7 @@ export const pdfButton = style({
   padding: ' 1.4rem 0',
   borderRadius: '15px',
 
-  border: `1px solid ${themeVars.color.gray100}`,
+  border: `1px solid ${themeVars.color.gray200}`,
   background: themeVars.color.white000,
   boxShadow: '0 0 10px 0 rgba(192, 198, 202, 0.10)',
 
@@ -40,7 +41,7 @@ export const pdfComment = style({
 export const cardContainer = style({
   display: 'grid',
   gridTemplateColumns: '1fr 1fr',
-  padding: '4.8rem 0',
+  padding: '4.8rem 0 0',
   rowGap: '24px',
   columnGap: '10px',
 });

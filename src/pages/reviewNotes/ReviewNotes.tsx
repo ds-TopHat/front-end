@@ -15,7 +15,7 @@ const ReviewNotes = () => {
     navigate(routePath.REVIEW_NOTE_DETAIL.replace(':id', id.toString()));
   };
 
-  const dummyCards = Array.from({ length: 100 }, (_, i) => ({
+  const dummyCards = Array.from({ length: 50 }, (_, i) => ({
     id: i + 1,
     text: `카드 ${i + 1}`,
     imageSrc: `https://picsum.photos/300/200?random=${i + 1}`,
