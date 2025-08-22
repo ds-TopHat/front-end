@@ -36,3 +36,11 @@ export const pdfComment = style({
   color: themeVars.color.gray500,
   ...themeVars.font.labelLarge,
 });
+
+export const cardContainer = style({
+  display: 'grid',
+  gridTemplateColumns: '1fr 1fr',
+  padding: '4.8rem 0',
+  rowGap: '24px',
+  columnGap: '10px',
+});

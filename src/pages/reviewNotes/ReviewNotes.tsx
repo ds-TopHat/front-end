@@ -1,8 +1,35 @@
+import { useState, useRef } from 'react';
 import { IcExtract } from '@components/icons';
+import { ReviewCard } from '@components/reviewCard/reviewCard';
+import { useNavigate } from 'react-router-dom';
+import { routePath } from '@routes/routePath';
+import { useInfiniteScroll } from '@hooks/useInfiniteScroll';
 
 import * as styles from './reviewNotes.css';
 
 const ReviewNotes = () => {
+  const navigate = useNavigate();
+  const loaderRef = useRef<HTMLDivElement>(null);
+
+  const handleClick = (id: number) => {
+    navigate(routePath.REVIEW_NOTE_DETAIL.replace(':id', id.toString()));
+  };
+
+  const dummyCards = Array.from({ length: 100 }, (_, i) => ({
+    id: i + 1,
+    text: `카드 ${i + 1}`,
+    imageSrc: `https://picsum.photos/300/200?random=${i + 1}`,
+  }));
+
+  const [cards, setCards] = useState(dummyCards.slice(0, 10));
+
+  useInfiniteScroll(loaderRef, () => {
+    setCards((prev) => [
+      ...prev,
+      ...dummyCards.slice(prev.length, prev.length + 10),
+    ]);
+  });
+
   return (
     <div className={styles.reviewContainer}>
       <h1 className={styles.title}>오답노트</h1>
@@ -12,6 +39,19 @@ const ReviewNotes = () => {
       <p className={styles.pdfComment}>
         질문했던 문제를 골라 출력해서 다시 풀어봐요!
       </p>
+
+      <div className={styles.cardContainer}>
+        {cards.map((card) => (
+          <ReviewCard
+            key={card.id}
+            imageSrc={card.imageSrc}
+            text={card.text}
+            onClick={() => handleClick(card.id)}
+          />
+        ))}
+      </div>
+
+      <div ref={loaderRef} />
     </div>
   );
 };
