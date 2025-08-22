@@ -11,12 +11,12 @@ export const container = style({
 export const title = style({
   display: 'flex',
   flexDirection: 'row',
-  padding: '5.6rem 0 0 3.6rem',
+  padding: '5.2rem 0 0 3.6rem',
 });
 
 export const name = style({
   color: themeVars.color.point,
-  fontSize: '3.2rem',
+  fontSize: '2.9rem',
   fontWeight: 400,
   lineHeight: 'normal',
   fontStyle: 'normal',
@@ -26,10 +26,11 @@ export const hello = style({
   background: themeVars.color.main_gradient,
   WebkitBackgroundClip: 'text',
   WebkitTextFillColor: 'transparent',
-  fontSize: '2.8rem',
+  fontSize: '2.4rem',
   fontWeight: 400,
   lineHeight: 'normal',
   fontStyle: 'normal',
+  alignSelf: 'flex-end',
 });
 
 export const noteDiv = style({
@@ -95,7 +96,7 @@ export const noteContent = style({
 });
 
 export const chipSection = style({
-  padding: '2.4rem 3.2rem 1rem 3.6rem',
+  padding: '0.8rem 3.2rem 0.8rem 3.6rem',
   display: 'flex',
   flexDirection: 'column',
   gap: '3.2rem',
@@ -149,17 +150,17 @@ export const chipGradientOverlay = style({
   bottom: 0,
   left: 0,
   width: '100%',
-  height: '56px',
+  height: '5.6rem',
   background: 'linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, #FFF 100%)',
-  pointerEvents: 'none', // 클릭 막힘 방지
+  pointerEvents: 'none',
 });
 
 export const expandButton = style({
   display: 'flex',
   justifyContent: 'center',
   width: '100%',
-  cursor: 'pointer',
   paddingBottom: '2rem',
+  cursor: 'pointer',
 });
 
 export const rotated = style({

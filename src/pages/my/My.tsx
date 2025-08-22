@@ -65,7 +65,7 @@ const My = () => {
               label={randomChip1.label}
               background={randomChip1.background}
             />
-            <span>{particle1}</span>
+            <span>{particle1}&nbsp;</span>
           </div>
 
           <div className={styles.secondLine}>
@@ -84,7 +84,7 @@ const My = () => {
           <div
             className={styles.chipList}
             style={{
-              maxHeight: expanded ? 'none' : '4.8rem',
+              maxHeight: expanded ? 'none' : '6rem',
               overflow: 'hidden',
             }}
           >
