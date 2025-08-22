@@ -1,9 +1,9 @@
 import { useState, useRef } from 'react';
 import { IcExtract } from '@components/icons';
-import { ReviewCard } from '@components/reviewCard/reviewCard';
 import { useNavigate } from 'react-router-dom';
 import { routePath } from '@routes/routePath';
 import { useInfiniteScroll } from '@hooks/useInfiniteScroll';
+import ReviewCard from '@components/reviewCard/ReviewCard';
 
 import * as styles from './reviewNotes.css';
 
