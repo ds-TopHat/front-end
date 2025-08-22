@@ -30,7 +30,7 @@ export const CHIP_LIST = [
   {
     icon: <IcChipNum />,
     label: '실수와 제곱근',
-    background: 'linear-gradient(90deg, #FF7C24 0%, #FFB27E 100%);',
+    background: 'linear-gradient(90deg, #FF7C24 0%, #FFB27E 100%)',
   },
   {
     icon: <IcChipAlpha />,

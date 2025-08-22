@@ -9,6 +9,8 @@ export const chip = style({
   color: themeVars.color.white000,
   borderRadius: '20px',
   ...themeVars.font.bodySmall,
+  whiteSpace: 'nowrap',
+  userSelect: 'none',
 });
 
 export const icon = style({

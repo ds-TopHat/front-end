@@ -1,5 +1,4 @@
 import Chip from '@components/chip/Chip';
-import { CHIP_LIST } from '@components/chip/chipData';
 import { IcDownArrow, IcRightArrow } from '@components/icons';
 import { useNavigate } from 'react-router-dom';
 import { routePath } from '@routes/routePath';
@@ -7,6 +6,8 @@ import { useMemo, useState } from 'react';
 import { getKoreanParticle } from '@utils/korParticle';
 
 import * as styles from './my.css';
+
+import { CHIP_LIST } from '@/shared/constants/chipData';
 
 const My = () => {
   const navigate = useNavigate();
