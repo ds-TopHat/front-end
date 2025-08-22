@@ -1,5 +1,4 @@
 import { style } from '@vanilla-extract/css';
-import { themeVars } from '@styles/theme.css';
 
 const sectionTopWrapper = style({
   position: 'relative',
@@ -9,7 +8,7 @@ const sectionTopWrapper = style({
 
   width: '100%',
   height: '249.8rem',
-  background: themeVars.color.main_gradient,
+  background: 'linear-gradient(180deg, #2150EC 0%,rgb(130, 172, 255) 100%)',
 });
 
 const iconPosition = style({
