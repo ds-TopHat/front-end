@@ -2,6 +2,8 @@ import { themeVars } from '@styles/theme.css';
 import { style } from '@vanilla-extract/css';
 
 export const container = style({
+  paddingTop: '10.8rem',
+
   minHeight: '100%',
   background: 'linear-gradient(355deg, #FFF 48.23%, #BFD9FE 97.05%), #FFF',
   backgroundRepeat: 'no-repeat',
@@ -11,7 +13,7 @@ export const container = style({
 export const title = style({
   display: 'flex',
   flexDirection: 'row',
-  padding: '5.2rem 0 0 3.6rem',
+  padding: '3.2rem 0 0 3.6rem',
 });
 
 export const name = style({

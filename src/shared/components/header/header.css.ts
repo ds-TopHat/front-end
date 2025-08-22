@@ -7,13 +7,9 @@ export const headerWrapper = style({
   padding: '6rem 2.4rem 1.2rem',
   alignItems: 'center',
   justifyContent: 'space-between',
-  position: 'sticky',
+  position: 'fixed',
   top: 0,
   width: '100%',
-
-  backgroundColor: 'rgba(116, 163, 255, 0.6)',
-  boxShadow: '0px 4px 4px rgba(182, 182, 182, 0.1)',
-  backdropFilter: 'blur(10px)',
-  WebkitBackdropFilter: 'blur(10px)',
+  backdropFilter: 'blur(5px)',
   zIndex: themeVars.zIndex.five,
 });

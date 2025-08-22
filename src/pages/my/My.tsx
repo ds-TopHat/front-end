@@ -23,8 +23,8 @@ const My = () => {
     return [shuffled[0], shuffled[1] || shuffled[0]];
   }, []);
 
-  const particle1 = getKoreanParticle(randomChip1.label, '와과'); // '와' or '과'
-  const particle2 = getKoreanParticle(randomChip2.label, '을를'); // '을' or '를'
+  const particle1 = getKoreanParticle(randomChip1.label, '와과');
+  const particle2 = getKoreanParticle(randomChip2.label, '을를');
 
   const toggleExpand = () => setExpanded((prev) => !prev);
 
@@ -85,7 +85,7 @@ const My = () => {
           <div
             className={styles.chipList}
             style={{
-              maxHeight: expanded ? 'none' : '6rem',
+              maxHeight: expanded ? 'none' : '8rem',
               overflow: 'hidden',
             }}
           >
