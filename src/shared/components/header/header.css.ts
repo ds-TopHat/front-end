@@ -1,4 +1,4 @@
-import { themeVars } from "@styles/theme.css";
+import { themeVars } from '@styles/theme.css';
 import { style } from '@vanilla-extract/css';
 
 export const headerWrapper = style({
@@ -7,7 +7,8 @@ export const headerWrapper = style({
   padding: '6rem 2.4rem 1.2rem',
   alignItems: 'center',
   justifyContent: 'space-between',
-  position: 'fixed',
+  position: 'sticky',
+  top: 0,
   width: '100%',
 
   backgroundColor: 'rgba(116, 163, 255, 0.6)',

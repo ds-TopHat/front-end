@@ -13,7 +13,9 @@ export const container = style({
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'center',
-  marginTop: '8rem',
+  paddingTop: '8rem',
+  height: '100dvh',
+  background: 'linear-gradient(0deg, #E7F0FF 0%, #FFF 100%)',
 });
 
 export const topBox = style({

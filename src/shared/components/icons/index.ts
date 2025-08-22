@@ -1,3 +1,10 @@
+export { default as IcChipAlpha } from './IcChipAlpha';
+export { default as IcChipBar } from './IcChipBar';
+export { default as IcChipLine } from './IcChipLine';
+export { default as IcChipNum } from './IcChipNum';
+export { default as IcChipShape } from './IcChipShape';
+export { default as IcDownArrow } from './IcDownArrow';
+export { default as IcExtract } from './IcExtract';
 export { default as IcFloatingSolve } from './IcFloatingSolve';
 export { default as IcKakao } from './IcKakao';
 export { default as IcMainAdd } from './IcMainAdd';
@@ -15,4 +22,5 @@ export { default as IcMainPaperRight } from './IcMainPaperRight';
 export { default as IcMainPencil } from './IcMainPencil';
 export { default as IcMainRect } from './IcMainRect';
 export { default as IcMypage } from './IcMypage';
+export { default as IcRightArrow } from './IcRightArrow';
 export { default as IcToggleCamera } from './IcToggleCamera';

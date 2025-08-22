@@ -1,5 +1,5 @@
 const ReviewNotes = () => {
-  return <div>ReviewNotes</div>;
+  return <div>오답노트목록</div>;
 };
 
 export default ReviewNotes;
