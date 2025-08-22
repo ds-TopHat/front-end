@@ -52,7 +52,7 @@ const ScrollText = () => {
     >
       {renderLine('수학문제풀이를', inverseGradientOpacity)}
       {renderLine('단계별로 도와주는', combinedOpacityLine2)}
-      {renderLine('TOPHAT', combinedOpacityLine3)}
+      {renderLine('MAPI', combinedOpacityLine3)}
     </motion.div>
   );
 };
