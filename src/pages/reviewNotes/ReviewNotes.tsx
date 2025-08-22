@@ -1,4 +1,4 @@
-import { useState, useRef, useCallback } from 'react';
+import { useState, useCallback } from 'react';
 import { IcExtract } from '@components/icons';
 import { useNavigate } from 'react-router-dom';
 import { routePath } from '@routes/routePath';
@@ -9,7 +9,6 @@ import * as styles from './reviewNotes.css';
 
 const ReviewNotes = () => {
   const navigate = useNavigate();
-  const loaderRef = useRef<HTMLDivElement>(null);
 
   const handleClick = (id: number) => {
     navigate(routePath.REVIEW_NOTE_DETAIL.replace(':id', id.toString()));
@@ -33,7 +32,7 @@ const ReviewNotes = () => {
     });
   }, [dummyCards]);
 
-  useInfiniteScroll(loaderRef, loadMore);
+  const loaderRef = useInfiniteScroll(loadMore);
 
   return (
     <div className={styles.reviewContainer}>
