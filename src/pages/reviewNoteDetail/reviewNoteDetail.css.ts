@@ -15,12 +15,12 @@ export const mainContainer = style({
 
 export const topContent = style({
   display: 'flex',
+  alignItems: 'center',
   justifyContent: 'space-between',
 });
 
 export const date = style({
   display: 'flex',
-  alignItems: 'center',
   color: themeVars.color.gray500,
   ...themeVars.font.bodySmall,
 });

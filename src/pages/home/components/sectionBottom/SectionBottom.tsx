@@ -53,20 +53,14 @@ const SectionBottom = () => {
         style={{
           y: translateYIn,
           opacity: combinedOpacity,
-          position: 'relative',
-          top: '40%',
-          left: 0,
-          width: '100%',
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          pointerEvents: 'auto',
         }}
+        className={styles.sectionContent}
       >
-        <div style={{ display: 'flex', gap: '1rem', marginBottom: '2rem' }}>
+        <div className={styles.iconWrapper}>
           <IcMainPaperLeft className={styles.iconFull} />
           <IcMainPaperRight className={styles.iconFull} />
         </div>
+
         <div className={styles.blueBackground}>
           <button className={styles.mainButton} onClick={handleClick}>
             질문 하러가기
