@@ -1,13 +1,14 @@
 import Chip from '@components/chip/Chip';
-import { IcDownArrow, IcRightArrow } from '@components/icons';
+import { IcChipNum, IcDownArrow, IcRightArrow } from '@components/icons';
+import { useState } from 'react';
+import { getKoreanParticle } from '@utils/korParticle';
 import { useNavigate } from 'react-router-dom';
 import { routePath } from '@routes/routePath';
-import { useMemo, useState } from 'react';
-import { getKoreanParticle } from '@utils/korParticle';
 
 import * as styles from './my.css';
 
 import { CHIP_LIST } from '@/shared/constants/chipData';
+import { MYPAGE_DATA } from '@/shared/constants/mypageData';
 
 const My = () => {
   const navigate = useNavigate();
@@ -16,22 +17,29 @@ const My = () => {
     navigate(routePath.REVIEW_NOTES);
   };
   const [expanded, setExpanded] = useState(false);
-
-  // 임시 랜덤 선택
-  const [randomChip1, randomChip2] = useMemo(() => {
-    const shuffled = [...CHIP_LIST].sort(() => 0.5 - Math.random());
-    return [shuffled[0], shuffled[1] || shuffled[0]];
-  }, []);
-
-  const particle1 = getKoreanParticle(randomChip1.label, '와과');
-  const particle2 = getKoreanParticle(randomChip2.label, '을를');
-
   const toggleExpand = () => setExpanded((prev) => !prev);
+  const data = MYPAGE_DATA;
+
+  const mappedChips = data.unitsList.map((chip) => {
+    const matched = CHIP_LIST.find((c) => c.id === chip.id);
+    return {
+      ...chip,
+      icon: matched?.icon ?? <IcChipNum />,
+      background:
+        matched?.background ?? 'linear-gradient(90deg, #ccc 0%, #eee 100%)',
+      label: matched?.label ?? chip.type,
+    };
+  });
+
+  const [topChip1, topChip2, ...restChips] = mappedChips;
+
+  const particle1 = getKoreanParticle(topChip1?.label ?? '', '와과');
+  const particle2 = getKoreanParticle(topChip2?.label ?? '', '을를');
 
   return (
     <div className={styles.container}>
       <div className={styles.title}>
-        <h1 className={styles.name}>000</h1>
+        <h1 className={styles.name}>{data.name}</h1>
         <h1 className={styles.hello}>님, 안녕하세요!</h1>
       </div>
 
@@ -59,21 +67,22 @@ const My = () => {
       </div>
 
       <div className={styles.chipSection}>
+        {/* 상위 2개 칩 */}
         <div className={styles.randomChipContainer}>
           <div className={styles.firstLine}>
             <Chip
-              icon={randomChip1.icon}
-              label={randomChip1.label}
-              background={randomChip1.background}
+              icon={topChip1.icon}
+              label={topChip1.label}
+              background={topChip1.background}
             />
             <span>{particle1}&nbsp;</span>
           </div>
 
           <div className={styles.secondLine}>
             <Chip
-              icon={randomChip2.icon}
-              label={randomChip2.label}
-              background={randomChip2.background}
+              icon={topChip2.icon}
+              label={topChip2.label}
+              background={topChip2.background}
             />
             <span>{particle2} 많이 물어봤어요!</span>
           </div>
@@ -81,6 +90,7 @@ const My = () => {
 
         <div className={styles.divider} />
 
+        {/* 나머지 칩 */}
         <div className={styles.chipListWrapper}>
           <div
             className={styles.chipList}
@@ -89,9 +99,9 @@ const My = () => {
               overflow: 'hidden',
             }}
           >
-            {CHIP_LIST.map((chip, idx) => (
+            {restChips.map((chip) => (
               <Chip
-                key={idx}
+                key={chip.id}
                 icon={chip.icon}
                 label={chip.label}
                 background={chip.background}
