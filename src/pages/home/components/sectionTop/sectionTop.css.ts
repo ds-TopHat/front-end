@@ -1,6 +1,6 @@
 import { style } from '@vanilla-extract/css';
 
-const sectionTopWrapper = style({
+export const sectionTopWrapper = style({
   position: 'relative',
   display: 'flex',
   justifyContent: 'center',
@@ -11,10 +11,8 @@ const sectionTopWrapper = style({
   background: 'linear-gradient(180deg, #2150EC 0%,#82acff 100%)',
 });
 
-const iconPosition = style({
+export const iconPosition = style({
   position: 'absolute',
   top: '20rem',
   right: '3rem',
 });
-
-export { sectionTopWrapper, iconPosition };
