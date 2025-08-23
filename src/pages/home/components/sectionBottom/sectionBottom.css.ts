@@ -48,10 +48,28 @@ const mainButton = style({
   ...themeVars.font.displayLarge,
 });
 
+const sectionContent = style({
+  position: 'relative',
+  top: '40%',
+  left: 0,
+  width: '100%',
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'center',
+  pointerEvents: 'auto',
+});
+
+const iconWrapper = style({
+  display: 'flex',
+  gap: '1rem',
+  marginBottom: '2rem',
+});
 export {
   sectionBottomWrapper,
   iconContainer,
   iconFull,
   blueBackground,
   mainButton,
+  sectionContent,
+  iconWrapper,
 };
