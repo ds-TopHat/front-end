@@ -1,3 +1,13 @@
+export interface Mypage {
+  name: string;
+  unitsList: UnitsList[];
+}
+
+export interface UnitsList {
+  id: number;
+  type: string;
+}
+
 export const MYPAGE_DATA = {
   name: 'testdd',
   unitsList: [
