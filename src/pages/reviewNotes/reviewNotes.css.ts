@@ -2,6 +2,7 @@ import { themeVars } from '@styles/theme.css';
 import { style } from '@vanilla-extract/css';
 
 export const reviewContainer = style({
+  height: '100dvh',
   padding: '14rem 3.6rem 4.8rem',
   background: themeVars.color.gray100,
 });
