@@ -2,14 +2,15 @@ import { useMutation } from '@tanstack/react-query';
 import type { AxiosError } from 'axios';
 
 import { postLogin } from './axios';
-import type { loginTypes } from '../types/api';
+import type { LoginResponseTypes, LoginTypes } from '../types/api';
 
 import { tokenService } from '@/shared/auth/services/tokenService';
+import { QUERY_KEYS } from '@/shared/constants/queryKey';
 
 export const usePostLogin = () => {
-  return useMutation({
-    mutationFn: ({ email, password }: loginTypes) =>
-      postLogin({ email, password }),
+  return useMutation<LoginResponseTypes, AxiosError, LoginTypes>({
+    mutationKey: [QUERY_KEYS.LOGIN],
+    mutationFn: postLogin,
     onSuccess: (data) => {
       if (data.token) {
         tokenService.saveAccessToken(data.token);

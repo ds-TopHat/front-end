@@ -36,7 +36,7 @@ const My = () => {
     );
   }, [data?.unitsList]);
 
-  if (!data?.unitsList || data.unitsList.length === 0) {
+  if (!data || !data.unitsList || data.unitsList.length === 0) {
     return (
       <div className={styles.container}>
         <div className={styles.title}>
@@ -77,8 +77,9 @@ const My = () => {
 
   const particle1 = getKoreanParticle(topChip1.label, '와과');
   const particle2 = getKoreanParticle(topChip2?.label ?? '', '을를');
+  const particleSingle = getKoreanParticle(topChip1.label, '을를');
   const message = isSingleChip
-    ? `을 물어봤어요!`
+    ? `${particleSingle} 물어봤어요!`
     : `${topChip1.label}${particle1} ${topChip2?.label ?? ''}${particle2} 많이 물어봤어요!`;
 
   return (
