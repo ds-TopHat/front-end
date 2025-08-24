@@ -11,7 +11,7 @@ export const usePostLogin = () => {
     mutationFn: ({ email, password }: loginTypes) =>
       postLogin({ email, password }),
     onSuccess: (data) => {
-      if (data?.token) {
+      if (data.token) {
         tokenService.saveAccessToken(data.token);
       }
     },

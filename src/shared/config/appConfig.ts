@@ -3,7 +3,7 @@ import { routePath } from '@routes/routePath.ts';
 // 애플리케이션 전체 설정을 관리하는 Config 파일
 const DEFAULT_CONFIG = {
   auth: {
-    isEnabled: false, // 인증 기능 활성화 여부
+    isEnabled: true, // 인증 기능 활성화 여부
 
     loginSuccessUrl: routePath.HOME,
     loginFailureUrl: routePath.LOGIN,
