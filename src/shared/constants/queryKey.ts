@@ -3,4 +3,5 @@ export const QUERY_KEYS = {
   SIGNIN: 'signin',
   LOGIN: 'login',
   ME: 'me',
+  REVIEWNOTES: 'review_notes',
 };
