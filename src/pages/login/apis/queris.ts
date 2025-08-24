@@ -2,7 +2,7 @@ import { useMutation } from '@tanstack/react-query';
 import type { AxiosError } from 'axios';
 
 import { postLogin } from './axios';
-import type { loginTypes } from '../types/loginTypes';
+import type { loginTypes } from '../types/api';
 
 import { tokenService } from '@/shared/auth/services/tokenService';
 

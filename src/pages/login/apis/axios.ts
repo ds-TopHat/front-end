@@ -1,4 +1,4 @@
-import type { loginTypes } from '../types/loginTypes';
+import type { loginTypes } from '../types/api';
 
 import { instance } from '@/shared/apis/instance';
 import { API_URL } from '@/shared/constants/apiURL';
