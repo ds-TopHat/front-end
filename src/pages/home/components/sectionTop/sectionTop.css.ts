@@ -10,9 +10,3 @@ export const sectionTopWrapper = style({
   height: '249.8rem',
   background: 'linear-gradient(180deg, #2150EC 0%,#82acff 100%)',
 });
-
-export const iconPosition = style({
-  position: 'absolute',
-  top: '20rem',
-  right: '3rem',
-});

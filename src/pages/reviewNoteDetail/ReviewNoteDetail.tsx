@@ -15,7 +15,7 @@ const ReviewNoteDetail = () => {
     return <p>존재하지 않는 노트입니다.</p>;
   }
 
-  const chipData = CHIP_LIST.find((chip) => chip.label === note.unitType);
+  const chipData = CHIP_LIST.find((chip) => chip.id === note.unitId);
 
   return (
     <main className={styles.mainContainer}>
