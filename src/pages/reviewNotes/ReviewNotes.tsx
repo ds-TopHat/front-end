@@ -6,9 +6,7 @@ import ReviewCard from '@components/reviewCard/ReviewCard';
 import { routePath } from '@routes/routePath';
 
 import * as styles from './reviewNotes.css';
-import { useGetReviewNotes } from './apis/queris';
-
-// import { REVIEWNOTES_DATA } from '@/shared/constants/reviewNotesData';
+import { useGetReviewNotes, usePostReviewPdf } from './apis/queris';
 
 const ReviewNotes = () => {
   const navigate = useNavigate();
@@ -25,8 +23,24 @@ const ReviewNotes = () => {
 
   const loaderRef = useInfiniteScroll(loadMore);
 
+  const { mutateAsync: createPdf } = usePostReviewPdf();
+
   const downloadPdf = async () => {
-    // PDF 다운로드 로직
+    if (!data) {
+      return;
+    }
+
+    const problemImageUrls = data.map((item) => item.problemImageUrl);
+    const blob = await createPdf({ problemImageUrls });
+
+    const url = window.URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = 'MAPI_exam.pdf';
+    document.body.appendChild(link);
+    link.click();
+    link.remove();
+    window.URL.revokeObjectURL(url);
   };
 
   // 데이터 없을 때
@@ -39,7 +53,6 @@ const ReviewNotes = () => {
     );
   }
 
-  // 데이터 있을 때
   return (
     <div className={styles.reviewContainer}>
       <h1 className={styles.title}>오답노트</h1>

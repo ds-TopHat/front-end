@@ -5,3 +5,7 @@ export interface ReviewNote {
 }
 
 export type ReviewNotesResponseTypes = ReviewNote[];
+
+export interface ReviewPdfResponse {
+  pdfUrl: string;
+}
