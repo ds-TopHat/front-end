@@ -1,18 +1,18 @@
 import { style } from '@vanilla-extract/css';
 import { themeVars } from '@styles/theme.css';
 
-const lineWrapper = style({
+export const lineWrapper = style({
   position: 'relative',
 });
 
-const gradientOverlay = style({
+export const gradientOverlay = style({
   position: 'absolute',
   top: 0,
   left: 0,
   width: '100%',
 });
 
-const wrapper = style({
+export const wrapper = style({
   display: 'flex',
   flexDirection: 'column',
   gap: '0.8rem',
@@ -24,7 +24,7 @@ const wrapper = style({
   zIndex: themeVars.zIndex.three,
 });
 
-const line = style({
+export const line = style({
   fontFamily: 'Pretendard Variable',
   fontSize: '3.2rem',
   fontWeight: 600,
@@ -32,12 +32,10 @@ const line = style({
   color: themeVars.color.white000,
 });
 
-const gradient = style({
+export const gradient = style({
   background: themeVars.color.main_gradient,
   backgroundClip: 'text',
   WebkitBackgroundClip: 'text',
   color: 'transparent',
   WebkitTextFillColor: 'transparent',
 });
-
-export { lineWrapper, gradientOverlay, wrapper, line, gradient };

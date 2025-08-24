@@ -7,37 +7,36 @@ import ReviewCard from '@components/reviewCard/ReviewCard';
 
 import * as styles from './reviewNotes.css';
 
+import { REVIEWNOTES_DATA } from '@/shared/constants/reviewNotesData';
+
 const ReviewNotes = () => {
   const navigate = useNavigate();
-
   const handleClick = (id: number) => {
     navigate(routePath.REVIEW_NOTE_DETAIL.replace(':id', id.toString()));
   };
 
-  const dummyCards = Array.from({ length: 50 }, (_, i) => ({
-    id: i + 1,
-    text: `카드 ${i + 1}`,
-    imageSrc: `https://picsum.photos/300/200?random=${i + 1}`,
-  }));
-
-  const [cards, setCards] = useState(dummyCards.slice(0, 10));
+  const [cards, setCards] = useState(REVIEWNOTES_DATA.slice(0, 10));
 
   const loadMore = useCallback(() => {
     setCards((prev) => {
-      const nextSlice = dummyCards.slice(prev.length, prev.length + 10);
+      const nextSlice = REVIEWNOTES_DATA.slice(prev.length, prev.length + 10);
       if (nextSlice.length === 0) {
         return prev;
       }
       return [...prev, ...nextSlice];
     });
-  }, [dummyCards]);
+  }, []);
 
   const loaderRef = useInfiniteScroll(loadMore);
+
+  const downloadPdf = async () => {
+    // pdf 다운로드 로직
+  };
 
   return (
     <div className={styles.reviewContainer}>
       <h1 className={styles.title}>오답노트</h1>
-      <button className={styles.pdfButton}>
+      <button className={styles.pdfButton} onClick={downloadPdf}>
         <IcExtract width={20} height={20} /> 오답노트 PDF로 추출하기
       </button>
       <p className={styles.pdfComment}>
@@ -47,10 +46,10 @@ const ReviewNotes = () => {
       <div className={styles.cardContainer}>
         {cards.map((card) => (
           <ReviewCard
-            key={card.id}
-            imageSrc={card.imageSrc}
-            text={card.text}
-            onClick={() => handleClick(card.id)}
+            key={card.questionId}
+            imageSrc={card.problemImageUrl}
+            text={card.unitType}
+            onClick={() => handleClick(card.questionId)}
           />
         ))}
       </div>
