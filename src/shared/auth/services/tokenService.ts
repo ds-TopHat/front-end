@@ -1,4 +1,4 @@
-const TOKEN_KEY_ACCESS = 'accessToken';
+const TOKEN_KEY_ACCESS = 'token';
 const TOKEN_KEY_REFRESH = 'refreshToken';
 
 export const tokenService = {
@@ -45,7 +45,8 @@ export const tokenService = {
   },
 
   hasToken(): boolean {
-    return (this.getAccessToken() && this.getRefreshToken()) !== null;
+    // return (this.getAccessToken() && this.getRefreshToken()) !== null;
+    return this.getAccessToken() !== null;
   },
 
   extractTokenFromBearer(bearerToken: string): string {

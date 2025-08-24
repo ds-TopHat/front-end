@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { routePath } from '@routes/routePath';
 import { emailRegex, passwordRegex } from '@utils/validators';
 
+import { usePostSignup } from './apis/queris';
 import * as styles from './signup.css';
 
 const Signup = () => {
@@ -15,6 +16,8 @@ const Signup = () => {
   const [emailError, setEmailError] = useState('');
   const [passwordError, setPasswordError] = useState('');
   const [confirmPasswordError, setConfirmPasswordError] = useState('');
+  const { mutate: signupMutate } = usePostSignup();
+
   const navigate = useNavigate();
 
   const goLogin = () => {
@@ -68,6 +71,24 @@ const Signup = () => {
     }
   };
 
+  const handleSignup = () => {
+    handleEmailBlur();
+    handlePasswordBlur();
+    handleConfirmPasswordBlur();
+
+    if (emailError || passwordError || confirmPasswordError) {
+      return;
+    }
+
+    signupMutate(
+      { email, password },
+      {
+        onSuccess: () => navigate(routePath.LOGIN),
+        onError: () => alert('회원가입에 실패했습니다. 다시 시도해주세요.'),
+      },
+    );
+  };
+
   const isButtonActive = !!(
     email &&
     password &&
@@ -82,10 +103,8 @@ const Signup = () => {
 
   return (
     <div className={styles.container}>
-      {/* 상단 박스 */}
       <div className={styles.topBox} />
 
-      {/* 회원가입 폼 */}
       <div className={styles.formWrapper}>
         <Input
           type="email"
@@ -112,8 +131,11 @@ const Signup = () => {
           error={confirmPasswordError}
         />
       </div>
+
       <div className={styles.buttonWrapper}>
-        <Button isActive={isButtonActive}>회원가입</Button>
+        <Button isActive={isButtonActive} onClick={handleSignup}>
+          회원가입
+        </Button>
         <span className={styles.loginText}>
           이미 계정이 있으신가요?
           <button className={styles.loginButton} onClick={goLogin}>
