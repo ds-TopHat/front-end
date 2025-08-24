@@ -7,7 +7,7 @@ import ReviewCard from '@components/reviewCard/ReviewCard';
 
 import * as styles from './reviewNotes.css';
 
-import { REVIEWNOTES_DATA } from '@/shared/constants/reviewnotesData';
+import { REVIEWNOTES_DATA } from '@/shared/constants/reviewNotesData';
 
 const ReviewNotes = () => {
   const navigate = useNavigate();
