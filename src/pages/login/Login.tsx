@@ -5,6 +5,7 @@ import { IcKakao } from '@components/icons';
 import { useNavigate } from 'react-router-dom';
 import { routePath } from '@routes/routePath';
 import { emailRegex, passwordRegex } from '@utils/validators';
+import { usePostLogin } from '@pages/login/apis/queris';
 
 import * as styles from './login.css';
 
@@ -16,8 +17,21 @@ const Login = () => {
   const [passwordError, setPasswordError] = useState('');
   const navigate = useNavigate();
 
+  const { mutate: loginMutate } = usePostLogin();
+
   const goSignup = () => {
     navigate(routePath.SIGNUP);
+  };
+
+  const handleLogin = () => {
+    loginMutate(
+      { email, password },
+      {
+        onSuccess: () => {
+          navigate(routePath.HOME);
+        },
+      },
+    );
   };
 
   const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -49,6 +63,7 @@ const Login = () => {
       setPasswordError('숫자·특수문자 포함 8자 이상이어야 합니다.');
     }
   };
+
   const isButtonActive = !!(
     email &&
     password &&
@@ -60,9 +75,7 @@ const Login = () => {
 
   return (
     <div className={styles.container}>
-      {/* 상단 박스 */}
       <div className={styles.topBox} />
-      {/* 로그인 폼 */}
       <div className={styles.formWrapper}>
         <Input
           type="email"
@@ -82,7 +95,9 @@ const Login = () => {
         />
       </div>
       <div className={styles.buttonWrapper}>
-        <Button isActive={isButtonActive}>로그인</Button>
+        <Button isActive={isButtonActive} onClick={handleLogin}>
+          로그인
+        </Button>
         <button className={styles.kakaoLoginButton}>
           <IcKakao width={18} height={18} />
           카카오 로그인

@@ -1,4 +1,4 @@
-const TOKEN_KEY_ACCESS = 'accessToken';
+const TOKEN_KEY_ACCESS = 'token';
 const TOKEN_KEY_REFRESH = 'refreshToken';
 
 export const tokenService = {
