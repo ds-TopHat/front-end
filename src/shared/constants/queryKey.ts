@@ -4,4 +4,5 @@ export const QUERY_KEYS = {
   LOGIN: 'login',
   ME: 'me',
   REVIEWNOTES: 'review_notes',
+  DELETE_ME: 'delete_me',
 };

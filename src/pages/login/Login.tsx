@@ -73,6 +73,8 @@ const Login = () => {
     passwordRegex.test(password)
   );
 
+  const handleKakaoLogin = () => {};
+
   return (
     <div className={styles.container}>
       <div className={styles.topBox} />
@@ -98,7 +100,7 @@ const Login = () => {
         <Button isActive={isButtonActive} onClick={handleLogin}>
           로그인
         </Button>
-        <button className={styles.kakaoLoginButton}>
+        <button className={styles.kakaoLoginButton} onClick={handleKakaoLogin}>
           <IcKakao width={18} height={18} />
           카카오 로그인
         </button>
