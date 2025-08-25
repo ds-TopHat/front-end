@@ -2,7 +2,7 @@ import { useMutation, useQuery } from '@tanstack/react-query';
 import type { AxiosError } from 'axios';
 
 import { getReviewNotes, postReviewPdf } from './axios';
-import type { ReviewNotesResponseTypes, ReviewPdfResponse } from '../types/api';
+import type { ReviewNotesResponseTypes } from '../types/api';
 
 import { QUERY_KEYS } from '@/shared/constants/queryKey';
 

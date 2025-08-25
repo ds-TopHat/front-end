@@ -1,4 +1,4 @@
-import type { ReviewNotesResponseTypes, ReviewPdfResponse } from '../types/api';
+import type { ReviewNotesResponseTypes } from '../types/api';
 
 import { instance } from '@/shared/apis/instance';
 import { API_URL } from '@/shared/constants/apiURL';
