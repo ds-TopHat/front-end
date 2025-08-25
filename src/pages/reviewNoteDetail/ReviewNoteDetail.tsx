@@ -2,17 +2,22 @@ import Chip from '@components/chip/Chip';
 import { useParams } from 'react-router-dom';
 
 import * as styles from './reviewNoteDetail.css';
+import { useGetReviewDetail } from './apis/queries';
 
 import { CHIP_LIST } from '@/shared/constants/chipData';
-import { REVIEWDETAIL_DATA } from '@/shared/constants/reviewDetail';
 
 const ReviewNoteDetail = () => {
   const { id } = useParams<{ id: string }>();
   const numericId = parseInt(id!, 10);
 
-  const note = REVIEWDETAIL_DATA.find((item) => item.questionId === numericId);
+  const { data: note } = useGetReviewDetail(numericId);
+
   if (!note) {
-    return <p>존재하지 않는 노트입니다.</p>;
+    return (
+      <main className={styles.mainContainer}>
+        <p className={styles.noteContent}>존재하지 않는 노트입니다.</p>
+      </main>
+    );
   }
 
   const chipData = CHIP_LIST.find((chip) => chip.id === note.unitId);

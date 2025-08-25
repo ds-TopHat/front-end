@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import { routePath } from '@routes/routePath';
 
 import * as styles from './my.css';
-import { useGetMe } from './apis/queris';
+import { useGetMe } from './apis/queries';
 
 import { CHIP_LIST } from '@/shared/constants/chipData';
 

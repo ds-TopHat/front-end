@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { routePath } from '@routes/routePath';
 import { emailRegex, passwordRegex } from '@utils/validators';
 
-import { usePostSignup } from './apis/queris';
+import { usePostSignup } from './apis/queries';
 import * as styles from './signup.css';
 
 const Signup = () => {
