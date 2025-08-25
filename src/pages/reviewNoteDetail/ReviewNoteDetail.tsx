@@ -2,7 +2,7 @@ import Chip from '@components/chip/Chip';
 import { useParams } from 'react-router-dom';
 
 import * as styles from './reviewNoteDetail.css';
-import { useGetReviewDetail } from './apis/queris';
+import { useGetReviewDetail } from './apis/queries';
 
 import { CHIP_LIST } from '@/shared/constants/chipData';
 

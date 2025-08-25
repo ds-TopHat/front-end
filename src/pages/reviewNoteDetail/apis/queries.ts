@@ -10,6 +10,6 @@ export const useGetReviewDetail = (questionId: number) => {
   return useQuery<ReviewDetailResponseTypes, AxiosError>({
     queryKey: [QUERY_KEYS.REVIEWNOTES, questionId],
     queryFn: () => getReviewDetail(questionId),
-    enabled: !!questionId,
+    enabled: Number.isInteger(questionId),
   });
 };

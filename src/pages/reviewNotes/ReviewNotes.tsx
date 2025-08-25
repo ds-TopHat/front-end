@@ -6,7 +6,7 @@ import ReviewCard from '@components/reviewCard/ReviewCard';
 import { routePath } from '@routes/routePath';
 
 import * as styles from './reviewNotes.css';
-import { useGetReviewNotes, usePostReviewPdf } from './apis/queris';
+import { useGetReviewNotes, usePostReviewPdf } from './apis/queries';
 
 const ReviewNotes = () => {
   const navigate = useNavigate();

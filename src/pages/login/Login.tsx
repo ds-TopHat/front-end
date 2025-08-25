@@ -5,7 +5,7 @@ import { IcKakao } from '@components/icons';
 import { useNavigate } from 'react-router-dom';
 import { routePath } from '@routes/routePath';
 import { emailRegex, passwordRegex } from '@utils/validators';
-import { usePostLogin } from '@pages/login/apis/queris';
+import { usePostLogin } from '@pages/login/apis/queries';
 
 import * as styles from './login.css';
 
