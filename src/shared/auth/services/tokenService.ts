@@ -45,8 +45,7 @@ export const tokenService = {
   },
 
   hasToken(): boolean {
-    // return (this.getAccessToken() && this.getRefreshToken()) !== null;
-    return this.getAccessToken() !== null;
+    return (this.getAccessToken() && this.getRefreshToken()) !== null;
   },
 
   extractTokenFromBearer(bearerToken: string): string {

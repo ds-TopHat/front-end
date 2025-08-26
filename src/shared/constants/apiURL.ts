@@ -8,6 +8,7 @@ export const API_URL = {
   SIGNUP: '/api/v0/users/signup',
   LOGIN: '/api/v0/users/login',
   USER_DELETE: '/api/v0/users/delete',
+  REISSUE: '/api/v0/users/refreshtoken',
 
   // email-verification-controller
   VERIFY_CODE: '/api/v0/email-auth/verify-code',
