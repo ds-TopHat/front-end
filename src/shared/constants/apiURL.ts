@@ -17,7 +17,7 @@ export const API_URL = {
   AI_CHAT: '/api/v0/ai/chat',
 
   // s-3-controller
-  S3_PRESIGNED: '/s3/presigned',
+  S3_PRESIGNED: '/s3/presigned?count=',
 
   // my-page-controller
   ME: '/api/v0/users/me',

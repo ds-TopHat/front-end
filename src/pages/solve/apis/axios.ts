@@ -10,7 +10,7 @@ export const getPresignedUrl = async (
   downloadUrls: string[];
   s3Key: string;
 }> => {
-  const { data } = await instance.get(`/s3/presigned?count=${count}`);
+  const { data } = await instance.get(`${API_URL.S3_PRESIGNED}${count}`);
   return data;
 };
 
