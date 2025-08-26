@@ -11,3 +11,4 @@ export const ReviewNotesPage = lazy(
 export const ReviewNoteDetailPage = lazy(
   () => import('@pages/reviewNoteDetail/ReviewNoteDetail'),
 );
+export const ErrorPage = lazy(() => import('@pages/error/Error'));
