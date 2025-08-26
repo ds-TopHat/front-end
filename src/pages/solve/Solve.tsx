@@ -1,119 +1,243 @@
-import { useState, useRef } from 'react';
-import Toggle from '@pages/solve/components/toggle/Toggle';
-import * as styles from '@pages/solve/solve.css';
-import { uploadToPresignedUrl } from '@apis/uplaod';
+import { useState, useRef, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { routePath } from '@routes/routePath';
+import { uploadToPresignedUrl } from '@apis/upload';
 
+import * as styles from './solve.css';
+import ChatManager, { type Chat } from './ChatManager';
+import Toggle from './components/toggle/Toggle';
+import Modal from './components/modal/Modal';
 import { getPresignedUrl } from './apis/axios';
-import { useRequestSolution } from './apis/queries';
-
-type Chat = {
-  from: 'me' | 'server';
-  imageUrl?: string;
-  text?: string;
-};
+import { usePostAiChat } from './apis/queries';
+import { processSolutionData, showStep, solutionStepsRef } from './ChatLogic';
 
 const Solve = () => {
   const [chatList, setChatList] = useState<Chat[]>([]);
   const bottomRef = useRef<HTMLDivElement>(null);
-  const [solutionSteps, setSolutionSteps] = useState<string[]>([]);
-  const [stepIndex, setStepIndex] = useState(0);
+  const [isOpen, setIsOpen] = useState(false);
+  const [imageUploaded, setImageUploaded] = useState(false);
+  const [downloadUrls, setDownloadUrls] = useState<string[]>([]);
+  const [s3Key, setS3Key] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
 
-  const scrollToBottom = () => {
-    requestAnimationFrame(() => {
-      bottomRef.current?.scrollIntoView({ behavior: 'smooth' });
-    });
-  };
+  const navigate = useNavigate();
+  const { mutateAsync: requestSolutionMutate } = usePostAiChat();
+
+  useEffect(() => {
+    requestAnimationFrame(() =>
+      bottomRef.current?.scrollIntoView({ behavior: 'smooth' }),
+    );
+  }, [chatList, isLoading]);
 
   const handleImageSelect = (url: string) => {
-    setChatList((prev) => {
-      const next = [...prev, { from: 'me' as const, imageUrl: url }];
-
-      setTimeout(() => scrollToBottom(), 0);
-      return next;
-    });
+    setChatList((prev) => [...prev, { from: 'me', imageUrl: url }]);
   };
 
+  // Toggle 선택 처리
   const handleTextSelect = async (text: string) => {
-    if (solutionSteps.length === 0) {
+    setChatList((prev) => [...prev, { from: 'me', text }]);
+
+    if (
+      text !== '해결했어요!' &&
+      (!imageUploaded || !s3Key || downloadUrls.length === 0)
+    ) {
+      setChatList((prev) => [
+        ...prev,
+        { from: 'server', text: '문제 이미지를 업로드 해주세요!' },
+      ]);
       return;
     }
 
-    setChatList((prev) => [...prev, { from: 'me', text }]);
-    scrollToBottom();
+    if (text === '해결했어요!') {
+      setChatList((prev) => [
+        ...prev,
+        {
+          from: 'server',
+          text: '🎉 문제 해결을 축하합니다!',
+          buttons: [
+            { label: '메인', onClick: () => navigate(routePath.HOME) },
+            { label: '마이페이지', onClick: () => navigate(routePath.MY) },
+          ],
+        },
+      ]);
+      return;
+    }
 
     if (text === '전체 풀이를 알려줘') {
-      // 전체 풀이 모두 출력
-      setTimeout(() => {
-        const full = solutionSteps.map((s) => ({
-          from: 'server' as const,
-          text: s,
-        }));
-        setChatList((prev) => [...prev, ...full]);
-        scrollToBottom();
-      }, 500);
-    } else if (text === '다음 단계를 알려줘') {
-      if (stepIndex < solutionSteps.length) {
-        const nextStep = solutionSteps[stepIndex];
-        setStepIndex(stepIndex + 1);
-
-        setTimeout(() => {
-          setChatList((prev) => [...prev, { from: 'server', text: nextStep }]);
-          scrollToBottom();
-        }, 500);
-      } else {
-        setTimeout(() => {
+      if (isLoading) {
+        return;
+      }
+      if (!solutionStepsRef.current.length) {
+        setIsLoading(true);
+        try {
+          const solutionData = await requestSolutionMutate({
+            downloadUrls,
+            s3Key,
+          });
+          const steps = processSolutionData(solutionData);
+          solutionStepsRef.current = steps;
           setChatList((prev) => [
             ...prev,
-            { from: 'server', text: '모든 단계를 완료했어요!' },
+            { from: 'server', text: steps.join('\n\n') },
           ]);
-          scrollToBottom();
-        }, 500);
+        } catch {
+          setChatList((prev) => [
+            ...prev,
+            {
+              from: 'server',
+              text: '풀이 요청 중 오류가 발생했습니다. 잠시 후 다시 시도해 주세요.',
+            },
+          ]);
+        } finally {
+          setIsLoading(false);
+        }
+      } else {
+        setChatList((prev) => [
+          ...prev,
+          { from: 'server', text: solutionStepsRef.current.join('\n\n') },
+        ]);
       }
-    } else if (text === '해결했어요!') {
-      setTimeout(() => {
+      return;
+    }
+
+    if (text === '단계별 풀이를 알려줘') {
+      if (isLoading) {
+        return;
+      }
+      if (!solutionStepsRef.current.length) {
+        setIsLoading(true);
+        try {
+          const solutionData = await requestSolutionMutate({
+            downloadUrls,
+            s3Key,
+          });
+          const steps = processSolutionData(solutionData);
+          solutionStepsRef.current = steps;
+
+          if (!steps.length) {
+            setChatList((prev) => [
+              ...prev,
+              { from: 'server', text: '풀이 정보가 없습니다.' },
+            ]);
+          } else {
+            const buttons =
+              steps.length > 1
+                ? [
+                    {
+                      label: '다음 풀이',
+                      onClick: () => showStep(1, setChatList),
+                    },
+                  ]
+                : [];
+            setChatList((prev) => [
+              ...prev,
+              { from: 'server', text: steps[0], buttons },
+            ]);
+          }
+        } catch {
+          setChatList((prev) => [
+            ...prev,
+            {
+              from: 'server',
+              text: '풀이 요청 중 오류가 발생했습니다.\n잠시 후 다시 시도해 주세요.',
+            },
+          ]);
+        } finally {
+          setIsLoading(false);
+        }
+      } else {
+        const steps = solutionStepsRef.current;
+        const buttons =
+          steps.length > 1
+            ? [
+                {
+                  label: '다음 풀이',
+                  onClick: () => showStep(1, setChatList),
+                },
+              ]
+            : [];
+        setChatList((prev) => [
+          ...prev,
+          { from: 'server', text: steps[0], buttons },
+        ]);
+      }
+      return;
+    }
+
+    setChatList((prev) => [
+      ...prev,
+      { from: 'server', text: '요청을 이해하지 못했습니다.' },
+    ]);
+  };
+
+  const handleCameraClick = () => setIsOpen(true);
+
+  const handleModalSelect = async (option: 'one' | 'two') => {
+    setIsOpen(false);
+    setChatList([]);
+    solutionStepsRef.current = [];
+    setImageUploaded(false);
+    setS3Key('');
+    setDownloadUrls([]);
+
+    const count = option === 'one' ? 1 : 2;
+    try {
+      const {
+        uploadUrls,
+        downloadUrls: presignedDownloadUrls,
+        s3Key: presignedS3Key,
+      } = await getPresignedUrl(count);
+
+      // 파일 선택 input (필요 시 다중 선택 허용)
+      const input = document.createElement('input');
+      input.type = 'file';
+      input.accept = 'image/*';
+      input.setAttribute('capture', 'environment');
+      input.multiple = count > 1;
+
+      const files = await new Promise<FileList | null>((resolve) => {
+        input.onchange = () => resolve(input.files);
+        input.click();
+      });
+
+      if (!files || files.length < count) {
         setChatList((prev) => [
           ...prev,
           {
             from: 'server',
-            text: '🎉 문제 해결을 축하합니다!',
+            text:
+              count > 1
+                ? '이미지 2장을 선택해주세요.'
+                : '이미지 1장을 선택해주세요.',
           },
         ]);
+        return;
+      }
 
-        scrollToBottom();
+      // 순차 업로드
+      for (let i = 0; i < count; i += 1) {
+        const response: Response = await uploadToPresignedUrl(
+          uploadUrls[i],
+          files[i]!,
+        );
 
-        setTimeout(() => {
-          // 초기화 또는 페이지 이동
-          setChatList([]);
-          setStepIndex(0);
-          setSolutionSteps([]);
-          // 메인 페이지 이동 추가 가능
-        }, 2000);
-      }, 500);
-    }
-  };
-  const { mutateAsync: requestSolutionMutate } = useRequestSolution();
+        if (!response.ok) {
+          throw new Error('S3 업로드 실패');
+        }
+        handleImageSelect(presignedDownloadUrls[i]);
+      }
 
-  const handleFileSelect = async (file: File) => {
-    try {
-      const { uploadUrl, downloadUrl } = await getPresignedUrl();
-      await uploadToPresignedUrl(uploadUrl, file);
-      handleImageSelect(downloadUrl);
-
-      const solutionData = await requestSolutionMutate(downloadUrl);
-      const steps = solutionData
-        .filter((item: Record<string, string>) =>
-          Object.keys(item)[0].startsWith('step'),
-        )
-        .map((item: Record<string, string>) => Object.values(item)[0]);
-
-      setSolutionSteps(steps);
+      setS3Key(presignedS3Key);
+      setDownloadUrls(presignedDownloadUrls);
+      setImageUploaded(true);
     } catch {
       setChatList((prev) => [
         ...prev,
-        { from: 'server', text: '오류가 발생했습니다.' },
+        {
+          from: 'server',
+          text: '이미지 업로드 중 오류가 발생했습니다. 다시 시도해 주세요.',
+        },
       ]);
-      scrollToBottom();
-      return;
     }
   };
 
@@ -121,31 +245,25 @@ const Solve = () => {
     <div className={styles.wrapper}>
       <div className={styles.chatContainer}>
         {chatList.map((chat, idx) => (
-          <div
-            key={idx}
-            className={
-              chat.from === 'me'
-                ? styles.chatBubbleRight
-                : styles.chatBubbleLeft
-            }
-          >
-            {chat.imageUrl && (
-              <img src={chat.imageUrl} alt="" className={styles.chatImage} />
-            )}
-            {chat.text && (
-              <div
-                className={
-                  chat.from === 'me' ? styles.chatText : styles.chatServerText
-                }
-              >
-                {chat.text}
-              </div>
-            )}
-          </div>
+          <ChatManager key={idx} chat={chat} />
         ))}
+        {isLoading && (
+          <div className={styles.chatBubbleLeft}>
+            <div className={styles.chatServerText}>로딩중</div>
+          </div>
+        )}
         <div ref={bottomRef} />
       </div>
-      <Toggle onTextSelect={handleTextSelect} onFileSelect={handleFileSelect} />
+
+      <Toggle
+        onTextSelect={handleTextSelect}
+        onCameraClick={handleCameraClick}
+      />
+      <Modal
+        isOpen={isOpen}
+        onClose={() => setIsOpen(false)}
+        onSelect={handleModalSelect}
+      />
     </div>
   );
 };

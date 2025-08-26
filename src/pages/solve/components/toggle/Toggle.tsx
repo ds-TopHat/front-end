@@ -1,46 +1,25 @@
-import { useRef } from 'react';
 import { IcToggleCamera } from '@components/icons';
 import * as styles from '@pages/solve/components/toggle/toggle.css';
 
 const TOGGLE_ITEMS = [
   '전체 풀이를 알려줘',
-  '다음 단계를 알려줘',
+  '단계별 풀이를 알려줘',
   '해결했어요!',
 ];
+
 interface ToggleProps {
   onTextSelect: (text: string) => void;
-  onFileSelect: (file: File) => void;
+  onCameraClick: () => void;
 }
 
-const Toggle = ({ onTextSelect, onFileSelect }: ToggleProps) => {
-  const fileInputRef = useRef<HTMLInputElement>(null);
-
-  const handleCameraClick = () => {
-    fileInputRef.current?.click();
-  };
-
-  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    if (file) {
-      onFileSelect(file);
-    }
-  };
+const Toggle = ({ onTextSelect, onCameraClick }: ToggleProps) => {
   return (
     <div className={styles.wrapper}>
       <div className={styles.scrollContainer}>
         <div className={styles.inner}>
-          <div onClick={handleCameraClick} style={{ cursor: 'pointer' }}>
+          <div onClick={onCameraClick} style={{ cursor: 'pointer' }}>
             <IcToggleCamera width={56} />
           </div>
-
-          <input
-            ref={fileInputRef}
-            type="file"
-            accept="image/*"
-            capture="environment"
-            onChange={handleFileChange}
-            style={{ display: 'none' }}
-          />
 
           <div className={styles.toggleList}>
             {TOGGLE_ITEMS.map((label, idx) => (

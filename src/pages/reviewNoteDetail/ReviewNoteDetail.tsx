@@ -1,5 +1,5 @@
-import Chip from '@components/chip/Chip';
 import { useParams } from 'react-router-dom';
+import Chip from '@components/chip/Chip';
 
 import * as styles from './reviewNoteDetail.css';
 import { useGetReviewDetail } from './apis/queries';
@@ -22,6 +22,16 @@ const ReviewNoteDetail = () => {
 
   const chipData = CHIP_LIST.find((chip) => chip.id === note.unitId);
 
+  const answerArray = JSON.parse(note.aiAnswer);
+  const formattedAiAnswer = Array.isArray(answerArray)
+    ? answerArray
+        .map((item) => {
+          const key = Object.keys(item)[0];
+          return item[key];
+        })
+        .join('\n')
+    : '';
+
   return (
     <main className={styles.mainContainer}>
       <div className={styles.topContent}>
@@ -35,9 +45,9 @@ const ReviewNoteDetail = () => {
         <p className={styles.date}>{note.createdAt}</p>
       </div>
 
-      <img src={note.problemImageUrl} alt={`노트 ${note.questionId}`} />
+      <img src={note.problemImageUrl} alt={`오답노트 ${note.questionId}`} />
 
-      <p className={styles.noteContent}>{note.aiAnswer}</p>
+      <p className={styles.noteContent}>{formattedAiAnswer}</p>
     </main>
   );
 };
