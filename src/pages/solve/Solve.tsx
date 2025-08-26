@@ -181,36 +181,64 @@ const Solve = () => {
     setDownloadUrls([]);
 
     const count = option === 'one' ? 1 : 2;
-    const { uploadUrls, downloadUrls, s3Key } = await getPresignedUrl(count);
+    try {
+      const {
+        uploadUrls,
+        downloadUrls: presignedDownloadUrls,
+        s3Key: presignedS3Key,
+      } = await getPresignedUrl(count);
 
-    const uploadPromises = uploadUrls.map((url, index) => {
-      return new Promise<void>((resolve, reject) => {
-        const input = document.createElement('input');
-        input.type = 'file';
-        input.accept = 'image/*';
-        input.capture = 'environment';
-        input.onchange = async (e: Event) => {
-          const target = e.target as HTMLInputElement;
-          const file = target.files?.[0];
-          if (!file) {
-            return reject(new Error('파일이 선택되지 않았습니다.'));
-          }
-          try {
-            await uploadToPresignedUrl(url, file);
-            handleImageSelect(downloadUrls[index]);
-            resolve();
-          } catch (err) {
-            reject(err);
-          }
-        };
+      // 파일 선택 input (필요 시 다중 선택 허용)
+      const input = document.createElement('input');
+      input.type = 'file';
+      input.accept = 'image/*';
+      input.setAttribute('capture', 'environment');
+      input.multiple = count > 1;
+
+      const files = await new Promise<FileList | null>((resolve) => {
+        input.onchange = () => resolve(input.files);
         input.click();
       });
-    });
-    await Promise.all(uploadPromises);
 
-    setS3Key(s3Key);
-    setDownloadUrls(downloadUrls);
-    setImageUploaded(true);
+      if (!files || files.length < count) {
+        setChatList((prev) => [
+          ...prev,
+          {
+            from: 'server',
+            text:
+              count > 1
+                ? '이미지 2장을 선택해주세요.'
+                : '이미지 1장을 선택해주세요.',
+          },
+        ]);
+        return;
+      }
+
+      // 순차 업로드
+      for (let i = 0; i < count; i += 1) {
+        const response: Response = await uploadToPresignedUrl(
+          uploadUrls[i],
+          files[i]!,
+        );
+
+        if (!response.ok) {
+          throw new Error('S3 업로드 실패');
+        }
+        handleImageSelect(presignedDownloadUrls[i]);
+      }
+
+      setS3Key(presignedS3Key);
+      setDownloadUrls(presignedDownloadUrls);
+      setImageUploaded(true);
+    } catch {
+      setChatList((prev) => [
+        ...prev,
+        {
+          from: 'server',
+          text: '이미지 업로드 중 오류가 발생했습니다. 다시 시도해 주세요.',
+        },
+      ]);
+    }
   };
 
   return (
