@@ -30,7 +30,6 @@ const Solve = () => {
   }, [chatList, isLoading]);
 
   const handleImageSelect = (url: string) => {
-    setImageUploaded(true);
     setChatList((prev) => [...prev, { from: 'me', imageUrl: url }]);
   };
 
@@ -38,7 +37,10 @@ const Solve = () => {
   const handleTextSelect = async (text: string) => {
     setChatList((prev) => [...prev, { from: 'me', text }]);
 
-    if (!imageUploaded && text !== '해결했어요!') {
+    if (
+      text !== '해결했어요!' &&
+      (!imageUploaded || !s3Key || downloadUrls.length === 0)
+    ) {
       setChatList((prev) => [
         ...prev,
         { from: 'server', text: '문제 이미지를 업로드 해주세요!' },
@@ -62,6 +64,9 @@ const Solve = () => {
     }
 
     if (text === '전체 풀이를 알려줘') {
+      if (isLoading) {
+        return;
+      }
       if (!solutionStepsRef.current.length) {
         setIsLoading(true);
         try {
@@ -74,6 +79,14 @@ const Solve = () => {
           setChatList((prev) => [
             ...prev,
             { from: 'server', text: steps.join('\n\n') },
+          ]);
+        } catch {
+          setChatList((prev) => [
+            ...prev,
+            {
+              from: 'server',
+              text: '풀이 요청 중 오류가 발생했습니다. 잠시 후 다시 시도해 주세요.',
+            },
           ]);
         } finally {
           setIsLoading(false);
@@ -88,6 +101,9 @@ const Solve = () => {
     }
 
     if (text === '단계별 풀이를 알려줘') {
+      if (isLoading) {
+        return;
+      }
       if (!solutionStepsRef.current.length) {
         setIsLoading(true);
         try {
@@ -118,6 +134,14 @@ const Solve = () => {
               { from: 'server', text: steps[0], buttons },
             ]);
           }
+        } catch {
+          setChatList((prev) => [
+            ...prev,
+            {
+              from: 'server',
+              text: '풀이 요청 중 오류가 발생했습니다.\n잠시 후 다시 시도해 주세요.',
+            },
+          ]);
         } finally {
           setIsLoading(false);
         }

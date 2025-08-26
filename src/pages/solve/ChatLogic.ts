@@ -5,17 +5,25 @@ import type { Chat } from './ChatManager';
 export const solutionStepsRef: { current: string[] } = { current: [] };
 
 export const processSolutionData = (data: Record<string, string>[]) => {
-  // step 순서대로
-  const steps = data
-    .filter((item) => Object.keys(item)[0].startsWith('step'))
-    .map((item) => Object.values(item)[0]);
+  // stepN 키를 전부 모아서 N 기준으로 정렬
+  const stepEntries = data
+    .flatMap((item) => Object.entries(item))
+    .filter(([k]) => k.startsWith('step')) as [string, string][];
+
+  stepEntries.sort((a, b) => {
+    const num = (k: string) => parseInt(k.replace(/\D/g, ''), 10) || 0;
+    return num(a[0]) - num(b[0]);
+  });
+
+  const steps = stepEntries.map(([, v]) => v);
 
   // answer가 있으면 마지막에 추가
-  const answerItem = data.find((item) => Object.keys(item)[0] === 'answer');
-  if (answerItem) {
-    steps.push(Object.values(answerItem)[0]);
+  const answer = data
+    .flatMap((item) => Object.entries(item))
+    .find(([k]) => k === 'answer')?.[1];
+  if (answer) {
+    steps.push(answer as string);
   }
-
   return steps;
 };
 

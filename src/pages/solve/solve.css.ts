@@ -1,5 +1,5 @@
 import { themeVars } from '@styles/theme.css';
-import { keyframes, style } from '@vanilla-extract/css';
+import { style } from '@vanilla-extract/css';
 
 const wrapper = style({
   width: '100%',
@@ -56,26 +56,6 @@ const chatServerText = style({
   ...themeVars.font.bodySmall,
 });
 
-const ellipsis = keyframes({
-  '0%, 20%': { content: '""' },
-  '40%': { content: '"."' },
-  '60%': { content: '".."' },
-  '80%, 100%': { content: '"..."' },
-});
-
-const chatLoading = style({
-  display: 'inline-block',
-  width: '1em',
-  textAlign: 'left',
-  position: 'relative',
-  selectors: {
-    '&::after': {
-      content: '""',
-      animation: `${ellipsis} 1s steps(4, end) infinite`,
-    },
-  },
-});
-
 const chatButtons = style({
   display: 'flex',
   gap: '0.8rem',
@@ -100,7 +80,6 @@ export {
   chatImage,
   chatText,
   chatServerText,
-  chatLoading,
   chatButtons,
   chatButton,
 };
