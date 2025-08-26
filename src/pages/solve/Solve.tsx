@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { routePath } from '@routes/routePath';
-import { uploadToPresignedUrl } from '@apis/uplaod';
+import { uploadToPresignedUrl } from '@apis/upload';
 
 import * as styles from './solve.css';
 import ChatManager, { type Chat } from './ChatManager';
