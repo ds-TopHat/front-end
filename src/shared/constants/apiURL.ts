@@ -14,7 +14,7 @@ export const API_URL = {
   REQUEST_CODE: '/api/v0/email-auth/request-code',
 
   //ai-controller
-  AI_CHAT: '/api/ai/chat',
+  AI_CHAT: '/api/v0/ai/chat',
 
   // s-3-controller
   S3_PRESIGNED: '/s3/presigned',

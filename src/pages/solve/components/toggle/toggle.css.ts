@@ -8,7 +8,6 @@ const wrapper = style({
   width: '100%',
   alignItems: 'center',
   backgroundColor: 'transparent',
-  backdropFilter: 'blur(10px)',
 });
 
 const scrollContainer = style({

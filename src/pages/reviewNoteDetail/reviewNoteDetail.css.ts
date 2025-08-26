@@ -28,5 +28,6 @@ export const date = style({
 export const noteContent = style({
   paddingTop: '1.6rem',
   color: themeVars.color.gray600,
+  whiteSpace: 'pre-wrap',
   ...themeVars.font.bodySmall,
 });
