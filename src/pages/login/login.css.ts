@@ -6,6 +6,8 @@ export const formWrapper = style({
   flexDirection: 'column',
   gap: '0.4rem',
   width: '100%',
+  maxWidth: '48rem',
+
   padding: '0 3.6rem',
 });
 
@@ -30,6 +32,8 @@ export const buttonWrapper = style({
   position: 'fixed',
   flexDirection: 'column',
   width: '100%',
+  maxWidth: '48rem',
+
   padding: '0 3.6rem 5rem',
   gap: '1.2rem',
   alignItems: 'center',
