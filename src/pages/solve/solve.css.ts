@@ -22,8 +22,8 @@ const chatContainer = style({
 
 const chatBubbleLeft = style({
   alignSelf: 'flex-start',
-  maxWidth: '340px',
-  padding: '0.8rem',
+  maxWidth: '33rem',
+  padding: '1rem',
   borderRadius: '1.2rem',
   backgroundColor: themeVars.color.white000,
   boxShadow: '0 2px 6px rgba(0,0,0,0.1)',
@@ -31,9 +31,9 @@ const chatBubbleLeft = style({
 
 const chatBubbleRight = style({
   alignSelf: 'flex-end',
-  maxWidth: '34rem',
-  padding: '0.8rem',
-  borderRadius: '1.2rem',
+  maxWidth: '33rem',
+  padding: '1rem',
+  borderRadius: '12px',
   background: themeVars.color.point,
   boxShadow: '0 2px 6px rgba(0,0,0,0.1)',
 });
@@ -41,7 +41,7 @@ const chatBubbleRight = style({
 const chatImage = style({
   width: '100%',
   height: 'auto',
-  borderRadius: '1rem',
+  borderRadius: '8px',
   display: 'block',
 });
 

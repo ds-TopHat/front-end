@@ -92,15 +92,10 @@ const Solve = () => {
           setIsLoading(false);
         }
       } else {
-        const steps = solutionStepsRef.current;
-        const mainSteps = steps.slice(0, -1);
-        const answerStep = steps[steps.length - 1];
-        const textToShow =
-          mainSteps.length > 0
-            ? mainSteps.join('\n') + `\n답: ${answerStep}`
-            : `답: ${answerStep}`;
-
-        setChatList((prev) => [...prev, { from: 'server', text: textToShow }]);
+        setChatList((prev) => [
+          ...prev,
+          { from: 'server', text: solutionStepsRef.current.join('\n\n') },
+        ]);
       }
       return;
     }

@@ -36,18 +36,18 @@ export const showStep = (
     return;
   }
 
-  const isLastStep = index === steps.length - 1;
+  const buttons =
+    index < steps.length - 1
+      ? [
+          {
+            label: '다음 풀이',
+            onClick: () => showStep(index + 1, setChatList),
+          },
+        ]
+      : [];
 
-  const buttons = !isLastStep
-    ? [
-        {
-          label: '다음 풀이',
-          onClick: () => showStep(index + 1, setChatList),
-        },
-      ]
-    : [];
-
-  const text = isLastStep ? `답: ${steps[index]}` : steps[index];
-
-  setChatList((prev) => [...prev, { from: 'server', text, buttons }]);
+  setChatList((prev) => [
+    ...prev,
+    { from: 'server', text: steps[index], buttons },
+  ]);
 };
