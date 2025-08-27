@@ -21,9 +21,6 @@ export const container = style({
 });
 
 export const topBox = style({
-  width: '12rem',
-  height: '12rem',
-  backgroundColor: '#98B6FF',
   marginBottom: '5rem',
 });
 

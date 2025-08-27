@@ -5,11 +5,14 @@ import { getKoreanParticle } from '@utils/korParticle';
 import { useNavigate } from 'react-router-dom';
 import { routePath } from '@routes/routePath';
 import Loading from '@pages/loading/Loading';
+import { themeVars } from '@styles/theme.css';
 
 import * as styles from './my.css';
-import { useGetMe } from './apis/queries';
+import { useDeleteMe, useGetMe } from './apis/queries';
+import Modal from './components/modal/Modal';
 
 import { CHIP_LIST } from '@/shared/constants/chipData';
+import { authService } from '@/shared/auth/services/authService';
 
 const My = () => {
   const navigate = useNavigate();
@@ -21,6 +24,15 @@ const My = () => {
   const toggleExpand = () => setExpanded((prev) => !prev);
 
   const { data, isLoading } = useGetMe();
+  const { mutate: deleteMe } = useDeleteMe();
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const openModal = () => setIsModalOpen(true);
+  const closeModal = () => setIsModalOpen(false);
+
+  const handleDelete = async () => {
+    await deleteMe();
+  };
 
   const mappedChips = useMemo(() => {
     return (
@@ -67,7 +79,11 @@ const My = () => {
                 </p>
               </div>
               <button className={styles.noteButton} onClick={goSolve}>
-                <IcRightArrow width={10} height={20} />
+                <IcRightArrow
+                  width={10}
+                  height={20}
+                  color={themeVars.color.white000}
+                />
               </button>
             </div>
           </div>
@@ -111,7 +127,11 @@ const My = () => {
               </p>
             </div>
             <button className={styles.noteButton} onClick={goReviewNotes}>
-              <IcRightArrow width={10} height={20} />
+              <IcRightArrow
+                width={10}
+                height={20}
+                color={themeVars.color.white000}
+              />
             </button>
           </div>
         </div>
@@ -185,6 +205,25 @@ const My = () => {
           </>
         )}
       </div>
+      <div className={styles.buttonContainer}>
+        <button
+          type="button"
+          className={styles.button}
+          onClick={() => authService.logout()}
+        >
+          로그아웃
+          <IcRightArrow width={6} height={12} color={themeVars.color.gray500} />
+        </button>
+        <button type="button" className={styles.button} onClick={openModal}>
+          탈퇴하기
+          <IcRightArrow width={6} height={12} color={themeVars.color.gray500} />
+        </button>
+      </div>
+      <Modal
+        isOpen={isModalOpen}
+        onClose={closeModal}
+        onConfirm={handleDelete}
+      />
     </div>
   );
 };

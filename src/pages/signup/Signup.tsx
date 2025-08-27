@@ -4,6 +4,7 @@ import Button from '@components/button/Button';
 import { useNavigate } from 'react-router-dom';
 import { routePath } from '@routes/routePath';
 import { emailRegex, passwordRegex } from '@utils/validators';
+import { IcBigLogo } from '@components/icons';
 
 import { usePostSignup } from './apis/queries';
 import * as styles from './signup.css';
@@ -103,8 +104,7 @@ const Signup = () => {
 
   return (
     <div className={styles.container}>
-      <div className={styles.topBox} />
-
+      <IcBigLogo width={100} className={styles.topBox} />
       <div className={styles.formWrapper}>
         <Input
           type="email"
