@@ -85,17 +85,22 @@ const Solve = () => {
             ...prev,
             {
               from: 'server',
-              text: '풀이 요청 중 오류가 발생했습니다. 잠시 후 다시 시도해 주세요.',
+              text: '풀이 요청 중 오류가 발생했습니다.\n잠시 후 다시 시도해 주세요.',
             },
           ]);
         } finally {
           setIsLoading(false);
         }
       } else {
-        setChatList((prev) => [
-          ...prev,
-          { from: 'server', text: solutionStepsRef.current.join('\n\n') },
-        ]);
+        const steps = solutionStepsRef.current;
+        const mainSteps = steps.slice(0, -1);
+        const answerStep = steps[steps.length - 1];
+        const textToShow =
+          mainSteps.length > 0
+            ? mainSteps.join('\n') + `\n답: ${answerStep}`
+            : `답: ${answerStep}`;
+
+        setChatList((prev) => [...prev, { from: 'server', text: textToShow }]);
       }
       return;
     }

@@ -17,6 +17,7 @@ const chatContainer = style({
   display: 'flex',
   flexDirection: 'column',
   gap: '1rem',
+  whiteSpace: 'pre-line',
 });
 
 const chatBubbleLeft = style({
