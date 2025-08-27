@@ -1,12 +1,12 @@
 import { themeVars } from '@styles/theme.css';
-import { style } from '@vanilla-extract/css';
+import { keyframes, style } from '@vanilla-extract/css';
 
 const wrapper = style({
   width: '100%',
   minHeight: '100vh',
   height: '100%',
   paddingTop: '10.8rem',
-  paddingBottom: '11.6rem',
+  paddingBottom: '10rem',
   backgroundColor: themeVars.color.gray100,
 });
 
@@ -84,3 +84,27 @@ export {
   chatButtons,
   chatButton,
 };
+
+const bounce = keyframes({
+  '0%, 80%, 100%': { transform: 'translateY(0px)' },
+  '40%': { transform: 'translateY(-2px)' },
+});
+
+export const dots = style({
+  display: 'flex',
+  gap: '0.7rem',
+  padding: '0.2rem',
+});
+
+export const dot = style({
+  width: '0.8rem',
+  height: '0.8rem',
+  borderRadius: '50%',
+  backgroundColor: themeVars.color.point,
+  animation: `${bounce} 1.2s infinite ease-in-out both`,
+  selectors: {
+    '&:nth-child(1)': { animationDelay: '0s' },
+    '&:nth-child(2)': { animationDelay: '0.2s' },
+    '&:nth-child(3)': { animationDelay: '0.4s' },
+  },
+});

@@ -46,6 +46,7 @@ export const noteTitle = style({
 });
 
 export const noteDescription = style({
+  whiteSpace: 'pre-line',
   color: themeVars.color.gray500,
   ...themeVars.font.bodySmall,
 });
@@ -189,7 +190,7 @@ export const button = style({
   padding: '0.8rem 2rem',
   height: '5.6rem',
   width: '100%',
-  color: themeVars.color.gray600,
+  color: themeVars.color.gray800,
   backgroundColor: themeVars.color.white000,
   borderRadius: '15px',
   border: `1px solid ${themeVars.color.gray100}`,
