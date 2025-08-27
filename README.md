@@ -32,15 +32,14 @@
 
 | 역할                     | 기술                                                                                                                                                                                                                              | 선정 이유                                                                                                                                                                                                                                                                                                                                                                                              |
 | ------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| **Library**              | ![React](https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=React&logoColor=black)                                                                                                                                | 동적인 사용자 경험과 빠른 인터랙션에 중점을 두고 있기 때문에 CSR 기반으로 작동하며,<br/>초기 렌더링 이후 모든 페이지가 클라이언트에서 동작하도록 설계할 수 있는 SPA 중심 개발을 할 수 있는 리액트를 선택하게 되었다.                                                                                                                                                                     |
-| **Programming Language** | ![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=TypeScript&logoColor=white)                                                                                                                 | 타입을 보장하여 코드의 안정성을 높이고 자동 완성을 통한 유지 보수를 좋게 하기 위함.                                                                                                                                                                                                                                                                                                                    |
-| **Styling**              | ![Vanilla Extract CSS](https://img.shields.io/badge/Vanilla%20Extract%20CSS-FFDB4F?style=for-the-badge&logo=Vanilla%20Extract&logoColor=black)                                                                                    | CSS-in-TS 방식으로 기존의 CSS-in-JS 방식과 다르게 타입 안전성을 제공하여 자동 완성, 런타임 오버헤드 없이 빌드 시 정적 CSS로 추출할 수 있다. 또한 빌드 시간에 CSS를 생성하는 zero-runtime의 장점 또한 해당 스택의 선택 기준이 되었다. <br>                                                                                                                                                              |
-| **Data Fetching**        | ![Axios](https://img.shields.io/badge/Axios-5A29E4?style=for-the-badge&logo=Axios&logoColor=white) ![TanStack Query](https://img.shields.io/badge/TanStack%20Query-FF4154?style=for-the-badge&logo=React%20Query&logoColor=white) | Axios: 자동으로 JSON 형태의 데이터를 파싱해주며, HTTP 요청에 대해 효율적인 처리를 제공한다. 또한 우리 프로젝트에서 token을 활용할 때 interceptor등의 기능을 활용할 수 있기 때문에 선택하였다. <br/>TanStack Query: 캐싱 기능을 활용한 다양한 동작을 구현할 수 있고, API 요청 수행을 위한 규격화된 방식을 제공하기 때문에 가독성을 높여준다. 서버 상태 관리에 특화되어 유지 보수 측면 등 DX가 향상된다. |
-| **UI Development**       | ![Storybook](https://img.shields.io/badge/Storybook-FF4785?style=for-the-badge&logo=Storybook&logoColor=white)                                                                                                                    | UI 컴포넌트 개발 및 테스트 편의성 제공, 디자이너와의 원활한 소통 가능                                                                                                                                                                                                                                                                                                                                  |
-| **Formatting**           | ![ESLint](https://img.shields.io/badge/ESLint-4B3263?style=for-the-badge&logo=eslint&logoColor=white) ![Prettier](https://img.shields.io/badge/prettier-1A2C34?style=for-the-badge&logo=prettier&logoColor=F7BA3E)                | 코드 일관성을 유지하고, 가독성을 높이며, 스타일 컨벤션을 통합적으로 관리                                                                                                                                                                                                                                                                                                                               |
-| **Package Manager**      | ![Pnpm](https://img.shields.io/badge/Pnpm-F69220?style=for-the-badge&logo=pnpm&logoColor=white)                                                                                                                                   | 기존에 사용하던 yarn의 node_modules에 패키지가 중복 저장되어 용량이 절감되는 문제를 해결할 수 있다. 또한 의존성 설치 없이 (zero-install) 사용하게 되면서 빌드와 배포 시간을 크게 단축시켜준다.                                                                                                                                                                                                         |
-| **Version Control**      | ![Git](https://img.shields.io/badge/git-%23F05033.svg?style=for-the-badge&logo=git&logoColor=white) ![GitHub](https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white)                  | 협업에서 필요한 버전 관리 시스템을 도입하기 위함.                                                                                                                                                                                                                                                                                                                                                      |
-| **Deployment**           | ![Vercel](https://img.shields.io/badge/Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white)                                                                                                                             | 짧은 기간에 배포하기 위해 러닝 커브가 작고 초기 배포에 적합한 플랫폼이기 때문에 선택하였다.                                                                                                                                                                                                                                                                                                            |
+| **Library**              | ![React](https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=React&logoColor=black)                                                                                                                                | 동적인 사용자 경험과 빠른 인터랙션에 중점을 두고 있기 때문에 CSR 기반으로 작동하며, 초기 렌더링 이후 모든 페이지가 클라이언트에서 동작하도록 설계할 수 있는 SPA 중심 개발을 할 수 있는 리액트를 선택                                                                                                                                                                     |
+| **Programming Language** | ![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=TypeScript&logoColor=white)                                                                                                                 | 타입을 보장하여 코드의 안정성을 높이고 자동 완성을 통한 유지 보수를 좋게 하기 위해 선택                                                                                                                                                                                                                                                                                                                   |
+| **Styling**              | ![Vanilla Extract CSS](https://img.shields.io/badge/Vanilla%20Extract%20CSS-FFDB4F?style=for-the-badge&logo=Vanilla%20Extract&logoColor=black)                                                                                    | CSS-in-TS 방식으로 타입 안전성을 제공하며, 빌드 시 정적 CSS 추출과 zero-runtime 장점을 활용할 수 있어 선택      |
+| **Data Fetching**        | ![Axios](https://img.shields.io/badge/Axios-5A29E4?style=for-the-badge&logo=Axios&logoColor=white) ![TanStack Query](https://img.shields.io/badge/TanStack%20Query-FF4154?style=for-the-badge&logo=React%20Query&logoColor=white) | Axios: HTTP 요청 처리와 JSON 파싱을 효율적으로 지원하며, 토큰 기반 인증 인터셉터 구현이 용이하여 선택 <br/>TanStack Query: 캐싱과 서버 상태 관리 기능을 제공하며, API 요청 규격화를 통해 가독성과 유지보수성을 높이기 위해 선택 |
+| **Formatting**           | ![ESLint](https://img.shields.io/badge/ESLint-4B3263?style=for-the-badge&logo=eslint&logoColor=white) ![Prettier](https://img.shields.io/badge/prettier-1A2C34?style=for-the-badge&logo=prettier&logoColor=F7BA3E)                | 코드 일관성을 유지하고, 가독성을 높이며, 스타일 컨벤션을 통합적으로 관리하기 위해 선택                                                                                                                                                                                                                                                                                                                               |
+| **Package Manager**      | ![Pnpm](https://img.shields.io/badge/Pnpm-F69220?style=for-the-badge&logo=pnpm&logoColor=white)                                                                                                                                   | 기존에 사용하던 yarn의 node_modules에 패키지가 중복 저장되어 용량이 절감되는 문제를 해결할 수 있으며, 의존성 설치 없이 (zero-install) 사용하게 되면서 빌드와 배포 시간을 크게 단축시켜주어 선택                                                                                                                                                                                                     |
+| **Version Control**      | ![Git](https://img.shields.io/badge/git-%23F05033.svg?style=for-the-badge&logo=git&logoColor=white) ![GitHub](https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white)                  | 협업 환경에서 버전 관리와 코드 이력을 효율적으로 관리할 수 있어 선택                               |
+| **Deployment**           | ![Vercel](https://img.shields.io/badge/Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white)                                                                                                                             | 짧은 기간에 배포하기 위해 러닝 커브가 작고 초기 배포에 적합한 플랫폼이기 때문에 선택                                                                                                                                                                                                                                                                                                         |
 
 
 ## 📢 Git/GitHub 컨벤션
@@ -61,12 +60,11 @@
 
 | 제목               | 내용                                                            |
 | ------------------ | --------------------------------------------------------------- |
+| `feat`             | 퍼블리싱 및 모든 새로운 기능                                       |
 | `setting`          | 패키지 설치, 개발 설정                                          |
-| `feat`             | 새로운 기능 추가 / 퍼블리싱                                     |
 | `fix`              | 버그 수정                                                       |
 | `chore`            | 빌드 테스트 업데이트, 패키지 매니저 설정, 그 외 기타 수정 |
 | `style`            | CSS 등 사용자 UI 디자인 변경                                    |
-| `api`              | API 연결 로직 작성                                              |
 | `refactor`         | 프로덕션 코드 리팩토링 및 QA 반영                               |
 | `deploy`           | 배포 작업                                                       |
 | `!HOTFIX`          | 급하게 치명적인 버그 수정                                       |
@@ -75,7 +73,7 @@
 <br />
 <br/>
 
-## 📢 폴더 구조
+## 🗂️ 폴더 구조
 
 ```
 |-- 📁 node_modules
@@ -124,8 +122,8 @@
 
 ## 📢 네이밍 컨벤션
 
- <details> 
-	 
+ <details>
+	   <summary>자세히보기</summary>
  ### 1. 기본 (Default)
 
 1. 컴포넌트 / class `PascalCase`
@@ -139,8 +137,8 @@
 
 ### 2. 타입 (Type)
 
-1. interface는 필수로 `PascalCase` 사용한다.
-2. Props 타입 → `컴포넌트명+PropTypes`
+1. interface는 필수로 `PascalCase` 사용
+2. Props 타입 → `컴포넌트명+Types`
    - 예시
      ```jsx
      interface PostPagePropTypes {
@@ -159,17 +157,15 @@
      }
      ```
 3. 일반 타입 → **`… + Types`**
-4. PropsTypes는 컴포넌트 파일 내 / 그 외 타입은 pages/…/types 폴더에 따로 분리
 
 <br/>
 
 ### 3. 스타일 (Style)
 
-1. ~~컴포넌트 Wrapper 네이밍 규칙 : `Wrapper` → (`Layout`)→ `Container` → `Box`~~ (미정)
-2. semantic tag는 적극 활용한다.
-   1. **`aria-label`**도 적극적 활용!
-3. SVG 파일 사용시
-   1. svgr로 컴포넌트화 후 사용하므로 svg이름을 그대로 변환하여 사용한다.
+1. semantic tag는 적극 활용!
+   1. **`aria-label`**도 적극적으로 활용할 수 있게 노력
+2. SVG 파일 사용시
+   1. svgr로 컴포넌트화 후 사용하므로 svg이름을 그대로 변환하여 사용
 
 <br/>
 
@@ -200,7 +196,7 @@
      const [isLogined, setIsLogined] = useState(false);
      ```
 
-   → 추가적으로 **`can / should / has`** 정도를 상황에 맞게 추가한다.
+   → 추가적으로 **`can / should / has`** 정도를 상황에 맞게 추가
 
 4. api 함수 **`HTTP 메서드 + 명사`**
    - 예시
@@ -208,19 +204,18 @@
      const getList = () => {};
      const getMovie = () => {};
      ```
-5. 네이밍 시 단수를 기본으로 사용하고 / 복수면 뒤에 List 키워드를 붙인다.
 
 <br/>
 
 ### 5. 기타
 
-1. assets (Icon이나 Img)의 경우 피그마 네이밍을 적극 활용한다.
+1. assets (Icon이나 Img)의 경우 피그마 네이밍을 적극 활용
 
    **→** `Ic + 피그마 네이밍` (icon의 경우)으로 사용
 
-2. URL, HTML 같은 범용적인 대문자 약어는 대문자 그대로 사용한다.
-3. 변수/최대한 직관적으로 작성하여 네이밍을 보고도 무슨 데이터, 행위인지 바로 유추할 수 있도록 한다.
-   - 주석이 필요한 경우에는 어떤 역할을 하는지 다른 사람이 이해할 수 있도록 작성한다.
+2. URL, HTML 같은 범용적인 대문자 약어는 대문자 그대로 사용
+3. 변수/최대한 직관적으로 작성하여 네이밍을 보고도 무슨 데이터, 행위인지 바로 유추할 수 있도록 작성
+   - 주석이 필요한 경우에는 어떤 역할을 하는지 다른 사람이 이해할 수 있도록 작성
    - 변수/함수 명은 20자 미만, 주석으로 변수 설명
 4. 주석은 작성하려고 하는 대상 **바로 위**에 작성
 
@@ -230,14 +225,14 @@
  </details>
 
 
-## 📢 코딩 (개발) 컨벤션
+## 📢 개발 컨벤션
 
- <details> 
-	 
+ <details>
+	 	   <summary>자세히보기</summary>
 ### 변수
 
-- var 금지.
-- `const` → `let` 순서로 위부터 선언.
+- var 금지
+- `const` → `let` 순서로 위부터 선언
 - 변수를 조합하여 문자열 생성시 “+ “ 금지. → 리터럴 사용(백틱 ```)
 - 변수명 : 의미를 확실히 나타낼 수 있도록
   - 예시 : 배열에 Arr 보다는 변수s = fruits, userlists 등등
@@ -249,9 +244,9 @@
 
 ### 함수
 
-- 화살표 함수. function 키워드 쓰지말기
-- 중복함수는 utils 폴더에 모아서 재사용한다.
-- 변수/함수 명은 20자 미만.
+- 화살표 함수 사용, function 키워드 사용하지 않기
+- 중복함수는 utils 폴더에 모아서 재사용할 수 있도록 노력
+- 변수/함수 명은 20자 미만
   - 최대한 네이밍에 의미를 담아서 작성하고 필요 시에 주석으로 설명 추가
 - 필요하다면 early return 패턴을 적극적으로 활용
   - 예시
@@ -266,7 +261,7 @@
 ### 컴포넌트
 
 - `rafce` → 고정
-- 의미없는 div 또는 컴포넌트 최상단은 fragment 사용하기
+- 의미없는 div 또는 컴포넌트 최상단은 fragment 사용
 
 ```jsx
 const InfoText = () => {
@@ -279,8 +274,8 @@ const InfoText = () => {
 };
 ```
 
-- children이 불필요할 땐 selfClosing사용하기 `<Component/>`
-- children 적극적으로 활용하기!
+- children이 불필요할 땐 selfClosing사용 `<Component/>`
+- children 적극적으로 활용
 
 ### 타입
 
@@ -307,15 +302,13 @@ const InfoText = () => {
   function checkIsUser({ userName, userBirth }: userDataProps) {}
   ```
 - 불필요한 반복문 지양 : filter, array.include() 등
-  - 조건부로 데이터를 확인하거나 뽑아야하는 로직을 사용할 때에는 `Map` 이나 `Object`처럼 `key`값을 이용해서 원소를 찾는 자료형을 이용하는것을 고려해보거나, 배열을 순회하지 않고 index로 바로 접근할 수 있는 방법이 없는지 고려.
+  - 조건부로 데이터를 확인하거나 뽑아야하는 로직을 사용할 때에는 `Map` 이나 `Object`처럼 `key`값을 이용해서 원소를 찾는 자료형을 이용하는것을 고려해보거나, 배열을 순회하지 않고 index로 바로 접근할 수 있는 방법이 없는지 고려
  
 
 
-### Style → X
-
+### Style
 [mozila 추천 css 순서 (참고)](https://www.notion.so/mozila-css-ae87c8e58b2149ab8f90c2110e537c31?pvs=21)
 
-→ 추가 예정
 
 ### 기타
 
