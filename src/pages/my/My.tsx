@@ -4,6 +4,7 @@ import { useState, useMemo } from 'react';
 import { getKoreanParticle } from '@utils/korParticle';
 import { useNavigate } from 'react-router-dom';
 import { routePath } from '@routes/routePath';
+import Loading from '@pages/loading/Loading';
 
 import * as styles from './my.css';
 import { useGetMe } from './apis/queries';
@@ -19,7 +20,7 @@ const My = () => {
   const [expanded, setExpanded] = useState(false);
   const toggleExpand = () => setExpanded((prev) => !prev);
 
-  const { data } = useGetMe();
+  const { data, isLoading } = useGetMe();
 
   const mappedChips = useMemo(() => {
     return (
@@ -35,6 +36,10 @@ const My = () => {
       }) ?? []
     );
   }, [data?.unitsList]);
+
+  if (isLoading) {
+    return <Loading />;
+  }
 
   if (!data || !data.unitsList || data.unitsList.length === 0) {
     return (

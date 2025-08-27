@@ -10,7 +10,11 @@ const ReviewNoteDetail = () => {
   const { id } = useParams<{ id: string }>();
   const numericId = parseInt(id!, 10);
 
-  const { data: note } = useGetReviewDetail(numericId);
+  const { data: note, isLoading } = useGetReviewDetail(numericId);
+
+  if (isLoading) {
+    return <></>;
+  }
 
   if (!note) {
     return (
