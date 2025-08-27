@@ -17,7 +17,7 @@ export const router = createBrowserRouter([
       },
       {
         path: '*',
-        element: <Navigate to={routePath.HOME} replace />,
+        element: <Navigate to={routePath.ERROR} replace />,
       },
     ],
   },

@@ -6,4 +6,5 @@ export interface LoginResponseTypes {
   email: string;
   message: string;
   token: string;
+  refreshToken: string;
 }

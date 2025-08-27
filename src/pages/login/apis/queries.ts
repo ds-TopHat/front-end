@@ -14,6 +14,7 @@ export const usePostLogin = () => {
     onSuccess: (data) => {
       if (data.token) {
         tokenService.saveAccessToken(data.token);
+        tokenService.saveRefreshToken(data.refreshToken);
       }
     },
     onError: (error: AxiosError) => {

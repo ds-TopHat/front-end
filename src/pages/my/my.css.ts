@@ -4,10 +4,9 @@ import { style } from '@vanilla-extract/css';
 export const container = style({
   paddingTop: '10.8rem',
 
-  height: '100dvh',
+  height: '100%',
   background: 'linear-gradient(355deg, #FFF 48.23%, #BFD9FE 97.05%), #FFF',
   backgroundRepeat: 'no-repeat',
-  backgroundSize: '100% 100dvh',
 });
 
 export const title = style({
@@ -149,7 +148,7 @@ export const chipListWrapper = style({
 
 export const chipGradientOverlay = style({
   position: 'absolute',
-  bottom: 0,
+  bottom: -1,
   left: 0,
   width: '100%',
   height: '5.6rem',

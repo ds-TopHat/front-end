@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { useInfiniteScroll } from '@hooks/useInfiniteScroll';
 import ReviewCard from '@components/reviewCard/ReviewCard';
 import { routePath } from '@routes/routePath';
+import Loading from '@pages/loading/Loading';
 
 import * as styles from './reviewNotes.css';
 import { useGetReviewNotes, usePostReviewPdf } from './apis/queries';
@@ -14,7 +15,7 @@ const ReviewNotes = () => {
     navigate(routePath.REVIEW_NOTE_DETAIL.replace(':id', id.toString()));
   };
 
-  const { data } = useGetReviewNotes();
+  const { data, isLoading } = useGetReviewNotes();
   // const data = REVIEWNOTES_DATA;
 
   const loadMore = useCallback(() => {
@@ -24,6 +25,10 @@ const ReviewNotes = () => {
   const loaderRef = useInfiniteScroll(loadMore);
 
   const { mutateAsync: createPdf } = usePostReviewPdf();
+
+  if (isLoading) {
+    return <Loading />;
+  }
 
   const downloadPdf = async () => {
     if (!data) {

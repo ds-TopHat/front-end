@@ -10,7 +10,11 @@ const ReviewNoteDetail = () => {
   const { id } = useParams<{ id: string }>();
   const numericId = parseInt(id!, 10);
 
-  const { data: note } = useGetReviewDetail(numericId);
+  const { data: note, isLoading } = useGetReviewDetail(numericId);
+
+  if (isLoading) {
+    return <></>;
+  }
 
   if (!note) {
     return (
@@ -32,6 +36,14 @@ const ReviewNoteDetail = () => {
         .join('\n')
     : '';
 
+  const formattedDate = (() => {
+    const date = new Date(note.createdAt);
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    const day = String(date.getDate()).padStart(2, '0');
+    return `${year}.${month}.${day}.`;
+  })();
+
   return (
     <main className={styles.mainContainer}>
       <div className={styles.topContent}>
@@ -42,7 +54,7 @@ const ReviewNoteDetail = () => {
             chipData?.background || 'linear-gradient(90deg,#ccc,#eee)'
           }
         />
-        <p className={styles.date}>{note.createdAt}</p>
+        <p className={styles.date}>{formattedDate}</p>
       </div>
 
       <img src={note.problemImageUrl} alt={`오답노트 ${note.questionId}`} />
