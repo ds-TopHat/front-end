@@ -15,7 +15,7 @@ import { QUERY_KEYS } from '@/shared/constants/queryKey';
 
 export const usePostSignup = () => {
   return useMutation<SignupResponseTypes, AxiosError, SignupTypes>({
-    mutationKey: [QUERY_KEYS.SIGNIN],
+    mutationKey: [QUERY_KEYS.SIGNUP],
     mutationFn: postSignup,
     onError: (error: AxiosError) => {
       if (!error.response) {

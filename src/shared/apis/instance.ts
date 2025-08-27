@@ -10,6 +10,4 @@ export const instance = axios.create({
 });
 
 instance.interceptors.request.use(onRequest);
-instance.interceptors.response.use((response) => {
-  return response;
-}, onErrorResponse);
+instance.interceptors.response.use((response) => response, onErrorResponse);
