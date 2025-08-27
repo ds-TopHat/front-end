@@ -104,7 +104,7 @@ const Signup = () => {
 
   return (
     <div className={styles.container}>
-      <IcBigLogo width={100} className={styles.topBox} />
+      <IcBigLogo width={100} height={76} className={styles.topBox} />
       <div className={styles.formWrapper}>
         <Input
           type="email"

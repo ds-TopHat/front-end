@@ -4,7 +4,6 @@ import { useState, useMemo } from 'react';
 import { getKoreanParticle } from '@utils/korParticle';
 import { useNavigate } from 'react-router-dom';
 import { routePath } from '@routes/routePath';
-import Loading from '@pages/loading/Loading';
 import { themeVars } from '@styles/theme.css';
 
 import * as styles from './my.css';
@@ -50,7 +49,7 @@ const My = () => {
   }, [data?.unitsList]);
 
   if (isLoading) {
-    return <Loading />;
+    return <></>;
   }
 
   if (!data || !data.unitsList || data.unitsList.length === 0) {
@@ -199,7 +198,7 @@ const My = () => {
               <IcDownArrow
                 width={16}
                 height={28}
-                className={expanded ? styles.rotated : ''}
+                className={expanded ? styles.rotated : styles.unrotated}
               />
             </button>
           </>

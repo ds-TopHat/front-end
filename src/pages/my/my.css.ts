@@ -166,7 +166,12 @@ export const expandButton = style({
 
 export const rotated = style({
   transform: 'rotate(180deg)',
-  transition: 'transform 0.3s',
+  transition: 'transform 0.5s',
+});
+
+export const unrotated = style({
+  transform: 'rotate(0deg)',
+  transition: 'transform 0.5s',
 });
 
 export const buttonContainer = style({
