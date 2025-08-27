@@ -15,6 +15,8 @@ const Login = () => {
 
   const [emailError, setEmailError] = useState('');
   const [passwordError, setPasswordError] = useState('');
+  const [loginError, setLoginError] = useState('');
+
   const navigate = useNavigate();
 
   const { mutate: loginMutate } = usePostLogin();
@@ -29,6 +31,9 @@ const Login = () => {
       {
         onSuccess: () => {
           navigate(routePath.HOME);
+        },
+        onError: () => {
+          setLoginError('이메일 또는 비밀번호가 올바르지 않습니다.');
         },
       },
     );
@@ -97,6 +102,7 @@ const Login = () => {
         />
       </div>
       <div className={styles.buttonWrapper}>
+        {loginError && <div className={styles.loginError}>{loginError}</div>}
         <Button isActive={isButtonActive} onClick={handleLogin}>
           로그인
         </Button>

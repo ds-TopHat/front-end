@@ -4,7 +4,7 @@ import { style, styleVariants } from '@vanilla-extract/css';
 export const baseInput = style({
   width: '100%',
   display: 'flex',
-  height: '5.6rem',
+  height: '5rem',
   padding: '0.8rem 2rem',
   alignItems: 'center',
   gap: '0.8rem',
@@ -13,7 +13,7 @@ export const baseInput = style({
   outline: 'none',
   background: themeVars.color.white000,
   boxSizing: 'border-box',
-  ...themeVars.font.bodySmall,
+  ...themeVars.font.labelLarge,
 });
 
 export const inputVariants = styleVariants({
@@ -61,5 +61,5 @@ export const errorMessage = style({
   margin: '0 0 0 0.4rem',
   minHeight: '2.4rem',
   color: '#F73E3E',
-  ...themeVars.font.labelLarge,
+  ...themeVars.font.labelSmall,
 });

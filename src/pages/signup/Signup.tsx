@@ -115,6 +115,14 @@ const Signup = () => {
           error={emailError}
         />
         <Input
+          // type="code"
+          placeholder="이메일로 전송된 인증번호 n자리"
+          // value={email}
+          // onChange={handleEmailChange}
+          // onBlur={handleEmailBlur}
+          // error={emailError}
+        />
+        <Input
           type="password"
           placeholder="비밀번호"
           value={password}

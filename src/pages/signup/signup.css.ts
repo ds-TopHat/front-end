@@ -30,7 +30,7 @@ export const buttonWrapper = style({
   width: '100%',
   maxWidth: '48rem',
 
-  padding: '0 3.6rem 5rem',
+  padding: '0 3.6rem 2.4rem',
   gap: '1.2rem',
   alignItems: 'center',
   bottom: '0',
@@ -39,7 +39,7 @@ export const buttonWrapper = style({
 export const loginText = style({
   display: 'flex',
   color: themeVars.color.gray500,
-  ...themeVars.font.bodySmall,
+  ...themeVars.font.labelLarge,
 });
 
 export const loginButton = style({
