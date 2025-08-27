@@ -5,8 +5,13 @@ import { useNavigate } from 'react-router-dom';
 import { routePath } from '@routes/routePath';
 import { emailRegex, passwordRegex } from '@utils/validators';
 import { IcBigLogo } from '@components/icons';
+import { themeVars } from '@styles/theme.css';
 
-import { usePostSignup } from './apis/queries';
+import {
+  usePostRequestCode,
+  usePostSignup,
+  usePostVerifyCode,
+} from './apis/queries';
 import * as styles from './signup.css';
 
 const Signup = () => {
@@ -17,6 +22,11 @@ const Signup = () => {
   const [emailError, setEmailError] = useState('');
   const [passwordError, setPasswordError] = useState('');
   const [confirmPasswordError, setConfirmPasswordError] = useState('');
+  const [emailCode, setEmailCode] = useState('');
+
+  const isEmailValid = emailRegex.test(email);
+  const isCodeValid = emailCode.length === 6;
+
   const { mutate: signupMutate } = usePostSignup();
 
   const navigate = useNavigate();
@@ -102,6 +112,46 @@ const Signup = () => {
     password === confirmPassword
   );
 
+  const [codeSent, setCodeSent] = useState(false);
+  const [codeVerified, setCodeVerified] = useState(false);
+  const [emailCodeError, setEmailCodeError] = useState('');
+
+  const requestCodeMutation = usePostRequestCode();
+  const verifyCodeMutation = usePostVerifyCode();
+  const handleRequestCode = () => {
+    if (!isEmailValid) {
+      return;
+    }
+    requestCodeMutation.mutate(
+      { email },
+      {
+        onSuccess: () => {
+          setCodeSent(true); // 성공 상태를 true로 유지
+          setEmailCodeError('');
+          alert('인증코드가 전송되었습니다.');
+        },
+        onError: () =>
+          setEmailCodeError('인증코드 전송 실패. 다시 시도해주세요.'),
+      },
+    );
+  };
+
+  const handleVerifyCode = () => {
+    if (!isCodeValid) {
+      return;
+    }
+    verifyCodeMutation.mutate(
+      { email, code: emailCode },
+      {
+        onSuccess: () => {
+          setCodeVerified(true); // 인증 성공 상태 유지
+          setEmailCodeError('');
+        },
+        onError: () => setEmailCodeError('인증코드가 올바르지 않습니다.'),
+      },
+    );
+  };
+
   return (
     <div className={styles.container}>
       <IcBigLogo width={100} height={76} className={styles.topBox} />
@@ -113,14 +163,44 @@ const Signup = () => {
           onChange={handleEmailChange}
           onBlur={handleEmailBlur}
           error={emailError}
+          rightButton={
+            <button
+              className={styles.codeButton}
+              disabled={!isEmailValid || codeSent}
+              onClick={handleRequestCode}
+              style={{
+                backgroundColor:
+                  isEmailValid && !codeSent
+                    ? themeVars.color.point
+                    : themeVars.color.gray500,
+              }}
+            >
+              인증코드
+            </button>
+          }
         />
+
         <Input
-          // type="code"
-          placeholder="이메일로 전송된 인증번호 n자리"
-          // value={email}
-          // onChange={handleEmailChange}
-          // onBlur={handleEmailBlur}
-          // error={emailError}
+          type="text"
+          placeholder="이메일로 전송된 인증코드 6자리"
+          value={emailCode}
+          onChange={(e) => setEmailCode(e.target.value)}
+          error={emailCodeError}
+          rightButton={
+            <button
+              className={styles.codeButton}
+              disabled={!isCodeValid || codeVerified}
+              onClick={handleVerifyCode}
+              style={{
+                backgroundColor:
+                  isCodeValid && !codeVerified
+                    ? themeVars.color.point
+                    : themeVars.color.gray500,
+              }}
+            >
+              인증하기
+            </button>
+          }
         />
         <Input
           type="password"

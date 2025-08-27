@@ -49,3 +49,14 @@ export const loginButton = style({
   border: 'none',
   cursor: 'pointer',
 });
+
+export const codeButton = style({
+  display: 'flex',
+  padding: '0.6rem 1rem',
+  justifyContent: 'center',
+  alignItems: 'center',
+  color: themeVars.color.white000,
+  borderRadius: '10px',
+  background: themeVars.color.gray500,
+  ...themeVars.font.labelLarge,
+});
